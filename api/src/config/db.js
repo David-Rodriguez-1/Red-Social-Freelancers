@@ -1,12 +1,6 @@
-// const { connect } = require('http2');
-// const mongoose = require('mongoose');
-
-
-//mongodb://localhost:27017
-
 const mongoose = require('mongoose')
-
-const DB_URI = 'mongodb://localhost:27017/AppFreelancers'
+require('dotenv').config()
+const DB_URI = process.env.DB_URI;
 
 main().catch(err => console.log(err));
 

@@ -9,4 +9,4 @@ const handleGetUsers = async (req, res) => {
   }
 }
 
-module.exports = handleGetUsers
+module.exports = { handleGetUsers }

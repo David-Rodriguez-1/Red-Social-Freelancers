@@ -34,10 +34,8 @@ const UserScheme = new mongoose.Schema({
 })
 
 // UserScheme.plugin(mongoosePaginate)
-
 // const modelUser = mongoose.model('SampleModel', UserScheme)
-
 // modelUser.paginate().then({}) // Usage
 // UserScheme.plugin(mongoosePaginate)
-// module.exports = mongoose.model('UserScheme', UserScheme)
+
 module.exports = UserScheme

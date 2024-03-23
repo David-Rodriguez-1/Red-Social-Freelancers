@@ -1,4 +1,4 @@
-const { addUser } = require('../controllers/addUsers')
+const { addUser } = require('../controllers/addUsersController')
 const addUserHandler = async (req, res) => {
   const data = req.body;
   try {
