@@ -1,0 +1,24 @@
+{
+  "name": "freelancers_app",
+  "version": "1.0.0",
+  "description": "App de red social para freelancers tech",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "nodemon -L"
+  },
+  "author": "David Rodriguez",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.0.0-beta.2",
+    "cookie-parser": "^1.4.6",
+    "express": "^5.0.0-beta.2",
+    "mongoose": "^8.2.2",
+    "mongoose-paginate-v2": "^1.8.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.3.0",
+    "nodemon": "^3.1.0"
+  }
+}
