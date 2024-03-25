@@ -1,14 +1,20 @@
-const { Connections } = require('../models/index')
+const {User ,Connection } = require('../models/index')
 
-const connectionController = async (conn) => {
-  console.log(conn);
+const connectionController = async ({ user_id, connected_user_id }) => {
   try {
-    // Crea una nueva conexión en la base de datos
-    const newConnection = await Connections.create(conn)
-    return newConnection
+    const newConnection = await Connection.create({
+      user_id: user_id,
+      connected_user_id: connected_user_id
+    })
+    const followerUser = await User.findByIdAndUpdate(
+      user_id,
+      { $push: { connections: newConnection._id } }, // Agrega la conexión al array de conexiones
+      { new: true } // Devuelve el usuario actualizado
+    )
+
+    return followerUser
   } catch (error) {
-    console.log('Error al crear la conexión: ', error)
-    res.status(500).json({ error: 'Error al crear la conexión' })
+    res.status(500).json({ message: error })
   }
 }
 

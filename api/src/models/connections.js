@@ -10,6 +10,11 @@ const mongoose = require('mongoose')
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true
+    },
+    connection_type: {
+      type: String,
+      enum: ['Following', 'Follower'],
+      required: true
     }
   })
 
