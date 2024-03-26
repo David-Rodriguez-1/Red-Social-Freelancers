@@ -1,4 +1,7 @@
-const { connectionController } = require('../controllers/followUserController')
+const {
+  connectionController,
+  unfollowUserController
+} = require('../controllers/followUserController')
 
 const followUserHandler = async (req, res) => {
   const data = req.body
@@ -10,4 +13,14 @@ const followUserHandler = async (req, res) => {
   }
 }
 
-module.exports = { followUserHandler }
+const unfollowUserHandler = async (req, res) => {
+  const data = req.body
+  try {
+    const unconnection = await unfollowUserController(data)
+    res.status(201).json(unconnection)
+  } catch (error) {
+    res.status(500).json({ error: 'Error al eliminar conexión' })
+  }
+}
+
+module.exports = { followUserHandler, unfollowUserHandler }

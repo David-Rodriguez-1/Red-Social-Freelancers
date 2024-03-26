@@ -1,7 +1,4 @@
-// const mongoose = require('mongoose')
 const { User, Connection } = require('../models/index')
-
-
 
 const getAllUsers = async () => {
   try {
@@ -11,4 +8,14 @@ const getAllUsers = async () => {
     console.error('Error al recuperar los usuarios:', error)
   }
 }
-module.exports = { getAllUsers }
+
+const addUser = async (user) => {
+  try {
+    const newUser = await User.create(user)
+    return newUser
+  } catch (error) {
+    console.log('mensaje del controller: ', error)
+  }
+}
+
+module.exports = { getAllUsers, addUser }

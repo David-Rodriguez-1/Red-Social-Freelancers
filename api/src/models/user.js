@@ -27,7 +27,7 @@ const UserScheme = new mongoose.Schema(
     },
     user_type: {
       type: String,
-      enum: ['freelancer', 'company', 'recruiter'],
+      enum: ['freelancer', 'recruiter'],
       required: true
     },
     profile_image: {
@@ -43,7 +43,8 @@ const UserScheme = new mongoose.Schema(
       type: String
     },
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Referencias a los seguidores
-    following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] // Referencias a los usuarios seguidos
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Referencias a los usuarios seguidos
+    posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }] // Referencias a los posts del usuario
   },
   { strictPopulate: false }
 )

@@ -9,13 +9,9 @@ const mongoose = require('mongoose')
     connected_user_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: true
+      required: true,
+      unique: true,
     },
-    connection_type: {
-      type: String,
-      enum: ['Following', 'Follower'],
-      required: true
-    }
   })
 
 module.exports = ConnectionsSchema

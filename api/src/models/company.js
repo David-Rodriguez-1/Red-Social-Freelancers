@@ -2,11 +2,6 @@ const mongoose = require('mongoose')
 // const mongoosePaginate = require('mongoose-paginate')
 
 const CompanyScheme = new mongoose.Schema({
-  user_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
   company_name: {
     type: String,
     unique: true,
@@ -20,7 +15,8 @@ const CompanyScheme = new mongoose.Schema({
   },
   logo_url: {
     type: String
-  }
+  },
+  followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 })
 
 // CompanyScheme.plugin(mongoosePaginate)

@@ -1,5 +1,4 @@
 const express = require('express')
-// const initDB = require('./src/config/db')
 const bodyParser = require('body-parser')
 const app = express()
 const mongoose = require('mongoose')
@@ -7,8 +6,6 @@ const mongoose = require('mongoose')
 require('./src/config/db')
 
 const port = 3001
-
-// const passport = require('passport')
 
 // for parsing json
 app.use(
@@ -24,8 +21,6 @@ app.use(
   })
 )
 
-// app.use(passport.initialize())
-
 app.use(require('./src/routes/index'))
 
 mongoose.connection.on('error', (err) => {
@@ -35,5 +30,3 @@ mongoose.connection.on('error', (err) => {
 app.listen(port, () => {
   console.log(`La aplicacion esta en linea en el puerto ${port}!`)
 })
-
-// initDB()
