@@ -1,4 +1,4 @@
-const { User, Connection } = require('../models/index')
+const { User, Connection, Posts } = require('../models/index')
 
 const getAllUsers = async () => {
   try {
@@ -14,8 +14,9 @@ const addUser = async (user) => {
     const newUser = await User.create(user)
     return newUser
   } catch (error) {
-    console.log('mensaje del controller: ', error)
+    console.log('Erorr al agregar el usuario: ', error)
   }
 }
+
 
 module.exports = { getAllUsers, addUser }

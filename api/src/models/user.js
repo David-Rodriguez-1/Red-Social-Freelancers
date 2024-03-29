@@ -42,16 +42,11 @@ const UserScheme = new mongoose.Schema(
     website_url: {
       type: String
     },
-    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Referencias a los seguidores
-    following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Referencias a los usuarios seguidos
-    posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }] // Referencias a los posts del usuario
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Ref a los seguidores
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }], // Ref a los usuarios seguidos
+    posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }] // Ref a los post
   },
   { strictPopulate: false }
 )
-
-// UserScheme.plugin(mongoosePaginate)
-// const modelUser = mongoose.model('SampleModel', UserScheme)
-// modelUser.paginate().then({}) // Usage
-// UserScheme.plugin(mongoosePaginate)
 
 module.exports = UserScheme
