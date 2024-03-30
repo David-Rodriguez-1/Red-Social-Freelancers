@@ -1,8 +1,8 @@
 const { Router } = require('express')
-const { addPostUserHandler } = require('../handlers/postUserHandler')
+const { addPostUserHandler, getPostsHandler } = require('../handlers/postUserHandler')
 const posts = Router()
 
-// posts.get('/', handleGetUsers)
+posts.get('/', getPostsHandler)
 posts.post('/', addPostUserHandler)
 // posts.put('/:id', unfollowUserHandler)
 

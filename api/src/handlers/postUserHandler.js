@@ -1,4 +1,13 @@
-const { addPostUser } = require('../controllers/postsController')
+const { addPostUser, findPosts } = require('../controllers/postsController')
+
+const getPostsHandler = async (req, res) => {
+try {
+  const postsUsers = await findPosts()
+  res.status(200).json(postsUsers)
+} catch (error) {
+  res.status(500).json({ mensaje_de_error: error.message })
+}
+}
 
 const addPostUserHandler = async (req, res) => {
   const post = req.body
@@ -10,4 +19,4 @@ const addPostUserHandler = async (req, res) => {
   }
 }
 
-module.exports = { addPostUserHandler }
+module.exports = { addPostUserHandler, getPostsHandler }
