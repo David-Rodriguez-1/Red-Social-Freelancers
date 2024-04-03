@@ -1,4 +1,4 @@
-const { User, Connection } = require('../models/index')
+const { User, Connection } = require('../../models/index')
 
 const connectionController = async ({ user_id, connected_user_id }) => {
   try {

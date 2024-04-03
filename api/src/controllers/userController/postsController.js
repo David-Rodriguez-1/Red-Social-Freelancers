@@ -1,4 +1,4 @@
-const { Posts, User } = require('../models/index')
+const { Posts, User } = require('../../models/index')
 
 const findPosts = async () => {
   try {

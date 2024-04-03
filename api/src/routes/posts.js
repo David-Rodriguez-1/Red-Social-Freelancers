@@ -4,6 +4,6 @@ const posts = Router()
 
 posts.get('/', getPostsHandler)
 posts.post('/', addPostUserHandler)
-// posts.put('/:id', unfollowUserHandler)
+// posts.put('/:id', ...)
 
 module.exports = posts

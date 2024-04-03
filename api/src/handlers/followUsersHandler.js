@@ -1,7 +1,7 @@
 const {
   connectionController,
   unfollowUserController
-} = require('../controllers/followUserController')
+} = require('../controllers/userController/index')
 
 const followUserHandler = async (req, res) => {
   const data = req.body
