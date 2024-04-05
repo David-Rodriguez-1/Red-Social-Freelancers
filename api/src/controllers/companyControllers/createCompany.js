@@ -5,7 +5,7 @@ const createCompany = async (data) => {
     const newCompany = await Company.create(data)
     return newCompany;
   } catch (error) {
-    console.log(error);
+    console.log({mensaje_de_error: error});
   }
 }
 

@@ -1,4 +1,4 @@
-const { addPostUser, findPosts } = require('../controllers/postsController')
+const { addPostUser, findPosts } = require('../controllers/userController/index')
 
 const getPostsHandler = async (req, res) => {
 try {

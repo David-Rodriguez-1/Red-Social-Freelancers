@@ -21,7 +21,7 @@ const connectionController = async ({ user_id, connected_user_id }) => {
 
     return { followerUser, followedUser }
   } catch (error) {
-    res.status(500).json({ message: error })
+    console.log({ message: error })
   }
 }
 
