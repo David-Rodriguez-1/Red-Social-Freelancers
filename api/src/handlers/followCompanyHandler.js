@@ -5,6 +5,7 @@ const {
 
 const followCompanyHandler = async (req, res) => {
   const dataID = req.body
+  console.log(dataID);
   try {
     const newConnCompany = await connCompanyController(dataID)
     res.status(201).json(newConnCompany)

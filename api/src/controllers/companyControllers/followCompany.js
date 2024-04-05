@@ -1,14 +1,15 @@
 const { Company, ConnCompany } = require('../../models/index')
 
 
-const connCompanyController = async ({ user_id, company_id }) => {
+const connCompanyController = async ({ user_id, id_company }) => {
+  console.log(id_company);
     const newConnCompany = await ConnCompany.create({
       user_id,
-      company_id
+      id_company
     })
     
     const followcompany = await Company.findByIdAndUpdate(
-      company_id,
+      id_company,
       { $push: { followers: newConnCompany.user_id } },
       { new: true }
     )
@@ -16,11 +17,11 @@ const connCompanyController = async ({ user_id, company_id }) => {
   }
 
 
-const unfollowCompanyController = async ({ user_id, company_id }) => {
-  await ConnCompany.findOneAndDelete({ user_id, company_id })
+const unfollowCompanyController = async ({ user_id, id_company }) => {
+  await ConnCompany.findOneAndDelete({ user_id, id_company })
 
   await Company.findByIdAndUpdate(
-      company_id,
+      id_company,
       { $pull: { followers: user_id } },
       { new: true }
   )
