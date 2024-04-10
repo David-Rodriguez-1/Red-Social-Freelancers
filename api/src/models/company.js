@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-// const mongoosePaginate = require('mongoose-paginate')
 
 const CompanyScheme = new mongoose.Schema(
   {
@@ -21,15 +20,10 @@ const CompanyScheme = new mongoose.Schema(
     logo_url: {
       type: String
     },
-    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    post_company: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PostsCompany' }]
   },
   { strictPopulate: false }
 )
-
-// CompanyScheme.plugin(mongoosePaginate)
-
-// const modelCompany = mongoose.model('SampleModel', CompanyScheme)
-
-// modelCompany.paginate().then({}) // Usage
 
 module.exports = CompanyScheme
