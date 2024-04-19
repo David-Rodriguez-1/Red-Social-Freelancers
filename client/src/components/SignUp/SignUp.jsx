@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import style from './SignUp.module.css'
-import { addUser } from '../../redux/action'
+import axios from 'axios'
+import { URL_BASE } from '../../redux/action'
 // import { useState } from 'react'
 
 // eslint-disable-next-line react/prop-types
@@ -16,7 +17,7 @@ export const SignUp = ({ setOptions }) => {
   // eslint-disable-next-line no-useless-escape
   const reg_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
   const onSubmit = (data) => {
-    addUser(data)
+    axios.post(URL_BASE, data)
   }
 
   return (
@@ -29,13 +30,13 @@ export const SignUp = ({ setOptions }) => {
             <input
               placeholder="First Name"
               type="text"
-              {...register('firstname', { required: true })}
+              {...register('name', { required: true })}
             />
 
             <input
               placeholder="Last Name"
               type="text"
-              {...register('lastname', { required: true })}
+              {...register('last_name', { required: true })}
             />
 
             <input
@@ -47,11 +48,7 @@ export const SignUp = ({ setOptions }) => {
             <input
               placeholder="Email"
               type="email"
-              {...register(
-                'email',
-                { pattern: reg_email },
-                { required: true }
-              )}
+              {...register('email', { pattern: reg_email }, { required: true })}
             />
 
             <input
