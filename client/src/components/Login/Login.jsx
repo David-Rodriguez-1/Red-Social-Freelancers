@@ -2,7 +2,8 @@ import { useForm } from 'react-hook-form'
 import style from './Login.module.css'
 import { Link } from 'react-router-dom'
 
-export const Login = () => {
+// eslint-disable-next-line react/prop-types
+export const Login = ({ setOptions }) => {
   const {
     register,
     handleSubmit
@@ -47,6 +48,11 @@ export const Login = () => {
               Enviar
             </button>
           </form>
+            <button
+              className={style.create_account}
+              onClick={() => setOptions('signup')}>
+              {`Don't have an account? Sign Up`}
+            </button>
         </div>
       </div>
     </>

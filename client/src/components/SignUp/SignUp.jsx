@@ -1,8 +1,11 @@
 import { useForm } from 'react-hook-form'
 import style from './SignUp.module.css'
-import { Link } from 'react-router-dom'
+import { addUser } from '../../redux/action'
+// import { useState } from 'react'
 
-export const SignUp = () => {
+// eslint-disable-next-line react/prop-types
+export const SignUp = ({ setOptions }) => {
+
   const {
     register,
     handleSubmit
@@ -12,33 +15,60 @@ export const SignUp = () => {
 
   // eslint-disable-next-line no-useless-escape
   const reg_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = (data) => {
+    addUser(data)
+  }
 
   return (
     <>
-      <div className={style.container_login}>
+      <div className={style.container_sign_up}>
         <div className={style.login}>
           <h4>Sign Up</h4>
           <i className={style.logo}>Logo</i>
           <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
             <input
-              placeholder="Email"
-              defaultValue=""
-              {...register('email', { pattern: reg_email }, { required: true })}
+              placeholder="First Name"
+              type="text"
+              {...register('firstname', { required: true })}
             />
 
             <input
-              placeholder="Password"
+              placeholder="Last Name"
+              type="text"
+              {...register('lastname', { required: true })}
+            />
+
+            <input
+              placeholder="Username"
+              type="text"
+              {...register('username', { required: true })}
+            />
+
+            <input
+              placeholder="Email"
+              type="email"
+              {...register(
+                'email',
+                { pattern: reg_email },
+                { required: true }
+              )}
+            />
+
+            <input
+              placeholder="Contraseña"
               type="password"
               {...register('password', { required: true })}
             />
 
-            <button className={style.button_submit} type="Submit">
+            <button className={style.button_submit_signup} type="Submit">
               Enviar
             </button>
-
-            <Link className={style.link_forgot}>Forgot password</Link>
           </form>
+          <button
+            className={style.create_account}
+            onClick={() => setOptions('signin')}>
+            {`Don't have an account? Sign In`}
+          </button>
         </div>
       </div>
     </>

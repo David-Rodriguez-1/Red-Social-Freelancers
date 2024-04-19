@@ -5,26 +5,27 @@ import Side_photo from '../../assets/fondo_AI.jpg'
 
 export const Login_SignUp = () => {
 
-  const [option, setSignin] = useState('signin')
-
+  const [option, setOptions] = useState('signin')
+console.log(option);
   return (
     <div className={style.container}>
       <img className={style.side_photo} src={Side_photo} alt="" />
-      {option === 'signin' ? <Login /> : <SignUp />}
+      {option === 'signin' ? <Login setOptions={setOptions} /> : <SignUp setOptions={setOptions} />}
 
-      {option === 'signin' ? (
-        <button
-          onClick={() => setSignin('signup')}
-          className={style.create_account_2}>
-          Create account
-        </button>
-      ) : (
-        <button
-          onClick={() => setSignin('signin')}
-          className={style.create_account_2}>
-          Login
-        </button>
-      )}
     </div>
   )
 }
+
+{/* {option === 'signin' ? (
+  <button
+    onClick={() => setOptions('signup')}
+    className={style.create_account_2}>
+    Create account
+  </button>
+) : (
+  <button
+    onClick={() => setOptions('signin')}
+    className={style.create_account_2}>
+    Login
+  </button>
+)} */}

@@ -67,7 +67,7 @@ h4{
 }
 
 .login{
-  box-shadow: 0 0 20px black;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.647);
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -78,17 +78,14 @@ h4{
 }
 .create_account{
   border: none;
-  background-color: #FCE153;
-  box-shadow: 0 0 4px black;
+  background-color: transparent;
+  box-shadow: 0 1px 0 yellowgreen;
   color: black;
   font-size: 1rem;
   padding: .4rem .6rem;
   border-radius: 10px;
   right: 2rem;
-  bottom: 2rem;
+  bottom: 1rem;
   position: absolute;
   cursor: pointer;
-}
-.create_account:hover{
-  box-shadow: inset 0 0 4px black;
 }
