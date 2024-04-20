@@ -1,5 +1,92 @@
-.container_signUp{
-  position: relative;
+.container_sign_up {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 50%;
-  background-color: brown;
+  height: 100%;
+}
+
+span {
+  margin: 0;
+  padding: 0;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 70%;
+}
+
+input {
+  border: none;
+  height: 2rem;
+  width: 80%;
+  border-radius: 10px;
+  transition: 0.5s;
+}
+
+input:focus {
+  outline: none;
+  background-color: rgb(213, 142, 0);
+  &&::placeholder {
+    color: aliceblue;
+  }
+}
+
+.logo {
+  position: relative;
+  top: 0;
+  margin: 4rem;
+}
+
+h4 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  font-size: 2rem;
+  margin: 1rem 0 0 0;
+  color: rgb(208, 233, 255);
+  padding: 0;
+  top: 0;
+}
+
+.button_submit_signup {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  color: rgb(242, 249, 255);
+  background-color: rgb(160, 80, 0);
+  border-radius: 10px;
+  border: none;
+  margin-top: 1rem;
+  height: 2rem;
+  width: 50%;
+}
+
+.login {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.647);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 2px inset rgb(255, 255, 255);
+  backdrop-filter: blur(20px);
+  align-items: center;
+  width: 60%;
+  height: 90%;
+}
+.create_account {
+  border: none;
+  background-color: transparent;
+  box-shadow: 0 1px 0 yellowgreen;
+  color: rgb(208, 233, 255);
+  font-size: 1rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 10px;
+  right: 2rem;
+  bottom: 1rem;
+  position: absolute;
+  cursor: pointer;
 }

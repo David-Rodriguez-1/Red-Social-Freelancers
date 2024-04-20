@@ -1,4 +1,4 @@
 const GET_USER = 'GET_USER';
-const GET_USERS = 'GET_USERS'
+const ADD_USER = 'ADD_USER'
 
-export { GET_USER, GET_USERS };
+export { GET_USER, ADD_USER };

@@ -1,6 +1,91 @@
 .container_login{
-  position: relative;
-  background-color: beige;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 50%;
+}
 
+span{
+  margin: 0;
+  padding: 0;
+}
+
+.form{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 70%;
+}
+
+input{
+  border: none;
+  height: 2rem;
+  width: 80%;
+  border-radius: 10px;
+  transition: .5s;
+}
+
+input:focus{
+  outline: none;
+  background-color: rgb(213, 142, 0);
+  &&::placeholder{
+    color: aliceblue;
+  }
+}
+
+.logo{
+  position: relative;
+  top: 0;
+  margin: 4rem;
+}
+
+h4{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2rem;
+  margin: 1rem 0 0 0;
+  top: 0;
+  color: rgb(208, 233, 255);
+}
+
+.button_submit{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  background-color: rgb(160, 80, 0);
+  color: rgb(242, 249, 255);
+  border-radius: 10px;
+  border: none;
+  height: 2rem;
+  width: 50%;
+  cursor: pointer;
+}
+
+.login{
+  box-shadow: 0 0 2px inset rgb(255, 255, 255);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(20px);
+  align-items: center;
+  width: 60%;
+  height: 70%;
+}
+.create_account{
+  border: none;
+  background-color: transparent;
+  box-shadow: 0 1px 0 yellowgreen;
+  color: rgb(208, 233, 255);
+  font-size: 1rem;
+  padding: .4rem .6rem;
+  border-radius: 10px;
+  right: 2rem;
+  bottom: 1rem;
+  position: absolute;
+  cursor: pointer;
 }

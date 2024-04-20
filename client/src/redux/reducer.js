@@ -1,4 +1,4 @@
-import { GET_USERS } from './actions_types'
+import { GET_USER } from './actions_types'
 
 const initialState = {
   user: {},
@@ -12,12 +12,17 @@ const initialState = {
 
 const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case GET_USERS:
+    case GET_USER:
       return {
         ...state,
         users: [payload],
         usersFilters: [payload]
       }
+    // case ADD_USER:
+    //   return {
+    //     ...state,
+    //     user: [payload]
+    //   }
 
     default:
       return state
