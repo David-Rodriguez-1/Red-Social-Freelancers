@@ -6,7 +6,6 @@ import { URL_BASE } from '../../redux/action'
 
 // eslint-disable-next-line react/prop-types
 export const SignUp = ({ setOptions }) => {
-
   const {
     register,
     handleSubmit
@@ -25,7 +24,7 @@ export const SignUp = ({ setOptions }) => {
       <div className={style.container_sign_up}>
         <div className={style.login}>
           <h4>Sign Up</h4>
-          <i className={style.logo}>Logo</i>
+          <i className={style.logo}></i>
           <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
             <input
               placeholder="First Name"
@@ -48,7 +47,7 @@ export const SignUp = ({ setOptions }) => {
             <input
               placeholder="Email"
               type="email"
-              {...register('email', { pattern: reg_email }, { required: true })}
+              {...register('email', { required: true }, { pattern: reg_email })}
             />
 
             <input
@@ -58,7 +57,7 @@ export const SignUp = ({ setOptions }) => {
             />
 
             <button className={style.button_submit_signup} type="Submit">
-              Enviar
+              Register
             </button>
           </form>
           <button

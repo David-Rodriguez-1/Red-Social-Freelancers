@@ -3,7 +3,9 @@
   height: 100vh;
   position: relative;
   display: flex;
-  background-image: url('https://static-cse.canva.com/blob/753281/20TexturasGratis.jpg');
+  background-image: url('../../assets/img_back_login.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   justify-content: center;
 }
 
@@ -12,6 +14,9 @@
   justify-content: flex-start;
   position: absolute;
   left: 0;
-  width: 50%;
+  width: 55%;
   height: 100%;
+}
+img{
+  mask-image: linear-gradient(to right, rgb(0, 0, 0) 95%, transparent);
 }

@@ -48,26 +48,26 @@ input:focus{
 
 h4{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  position: relative;
   font-size: 2rem;
   margin: 1rem 0 0 0;
-  padding: 0;
   top: 0;
+  color: rgb(208, 233, 255);
 }
 
 .button_submit{
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 600;
-  background-color: rgb(1, 1, 1);
-  color: aliceblue;
+  background-color: rgb(160, 80, 0);
+  color: rgb(242, 249, 255);
   border-radius: 10px;
   border: none;
   height: 2rem;
   width: 50%;
+  cursor: pointer;
 }
 
 .login{
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.647);
+  box-shadow: 0 0 2px inset rgb(255, 255, 255);
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -80,7 +80,7 @@ h4{
   border: none;
   background-color: transparent;
   box-shadow: 0 1px 0 yellowgreen;
-  color: black;
+  color: rgb(208, 233, 255);
   font-size: 1rem;
   padding: .4rem .6rem;
   border-radius: 10px;

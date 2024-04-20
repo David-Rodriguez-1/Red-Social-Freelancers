@@ -20,12 +20,12 @@ export const Login = ({ setOptions }) => {
       <div className={style.container_login}>
         <div className={style.login}>
           <h4>Login</h4>
-          <i className={style.logo}>Logo</i>
+          <i className={style.logo}></i>
           <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
             <input
               placeholder="Email"
               defaultValue=""
-              {...register('email', { pattern: reg_email }, { required: true })}
+              {...register('email', { required: true }, { pattern: reg_email })}
             />
 
             <input
@@ -36,7 +36,7 @@ export const Login = ({ setOptions }) => {
 
             <Link
               style={{
-                color: 'black',
+                color: 'rgb(208, 233, 255)',
                 fontStyle: 'italic',
                 textDecoration: 'none',
                 margin: 0,
@@ -45,14 +45,14 @@ export const Login = ({ setOptions }) => {
               Forgot password
             </Link>
             <button className={style.button_submit} type="Submit">
-              Enviar
+              Login
             </button>
           </form>
-            <button
-              className={style.create_account}
-              onClick={() => setOptions('signup')}>
-              {`Don't have an account? Sign Up`}
-            </button>
+          <button
+            className={style.create_account}
+            onClick={() => setOptions('signup')}>
+            {`Don't have an account? Sign Up`}
+          </button>
         </div>
       </div>
     </>
