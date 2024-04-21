@@ -25,6 +25,7 @@ export const Narbar = () => {
             <p>Notification</p>
           </li>
         </ul>
+        
         <div>
           Perfil
         </div>
