@@ -2,33 +2,49 @@ import { IoHome } from 'react-icons/io5'
 import { FaPeopleGroup } from 'react-icons/fa6'
 import { BiBriefcase } from 'react-icons/bi'
 import { FaBell } from 'react-icons/fa'
+import style from './Navbar.module.css'
+import { Link } from 'react-router-dom'
 
 export const Narbar = () => {
   return (
     <>
-      <nav>
-        <ul>
+      <nav className={style.nav_container}>
+        <Link className={style.logo_nav} to={'/home'}>
+          <i>F</i>
+        </Link>
+        <input
+          className={style.input_search}
+          placeholder="Search"
+          type="text"
+        />
+        <ul className={style.ul}>
           <li>
-            <IoHome />
-            <p>Home</p>
+            <a href="/home">
+              <IoHome />
+              <p>Home</p>
+            </a>
           </li>
           <li>
-            <FaPeopleGroup />
-            <p>My network</p>
+            <a href="/network">
+              <FaPeopleGroup />
+              <p>My network</p>
+            </a>
           </li>
           <li>
-            <BiBriefcase />
-            <p>Jobs</p>
+            <a href="/jobs">
+              <BiBriefcase />
+              <p>Jobs</p>
+            </a>
           </li>
           <li>
-            <FaBell />
-            <p>Notification</p>
+            <a href="/notifications">
+              <FaBell />
+              <p>Notification</p>
+            </a>
           </li>
         </ul>
-        
-        <div>
-          Perfil
-        </div>
+
+        <div className={style.menu_perfil}>Perfil</div>
       </nav>
     </>
   )

@@ -89,3 +89,24 @@ h4{
   position: absolute;
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .container_login{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .container_login{
+    width: 100%;
+  }
+  .login{
+    width: 90%;
+  }
+  .form{
+    width: 100%;
+  }
+  input{
+    width: 90%;
+  }
+}

@@ -37,8 +37,8 @@ export const Login = ({ setOptions }) => {
             <Link
               style={{
                 color: 'rgb(208, 233, 255)',
+                fontSize: '14px',
                 fontStyle: 'italic',
-                textDecoration: 'none',
                 margin: 0,
                 padding: 0
               }}>

@@ -8,15 +8,3 @@
   background-size: cover;
   justify-content: center;
 }
-
-.side_photo{
-  display: flex;
-  justify-content: flex-start;
-  position: absolute;
-  left: 0;
-  width: 55%;
-  height: 100%;
-}
-img{
-  mask-image: linear-gradient(to right, rgb(0, 0, 0) 95%, transparent);
-}
