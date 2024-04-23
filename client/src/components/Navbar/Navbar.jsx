@@ -4,11 +4,14 @@ import { BiBriefcase } from 'react-icons/bi'
 import { FaBell } from 'react-icons/fa'
 import style from './Navbar.module.css'
 import { Link } from 'react-router-dom'
+import { useOutsideClick } from '../../hooks/useOutsideClick'
 
 export const Narbar = () => {
+  const { ref, isOpen, setIsOpen } = useOutsideClick(false, () => {})
+
   return (
     <>
-      <nav className={style.nav_container}>
+      <nav className={style.nav_container} ref={ref}>
         <Link className={style.logo_nav} to={'/home'}>
           <i>F</i>
         </Link>
@@ -43,8 +46,27 @@ export const Narbar = () => {
             </a>
           </li>
         </ul>
-
-        <div className={style.menu_perfil}>Perfil</div>
+        <div className={style.menu_perfil}>
+          <img
+            className={style.img_perfil}
+            onClick={() => setIsOpen(!isOpen)}
+            src="https://avatars.githubusercontent.com/u/105451356?s=400&u=cbf6972a527c11de3916994407358ebeb7521fb7&v=4"
+            alt=""
+          />
+          {isOpen && (
+            <ul className={style.sub_menu}>
+              <li>
+                <a href="/profile">Profile</a>
+              </li>
+              <li>
+                <a href="configuration">Configuration</a>
+              </li>
+              <li>
+                <a href="/">Logout</a>
+              </li>
+            </ul>
+          )}
+        </div>
       </nav>
     </>
   )
