@@ -1,0 +1,14 @@
+.main_container{
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #00101F;
+  height: 100vh;
+}
+
+.container{
+  background-color: rgb(25, 25, 25);
+  width: 55%;
+  height: auto;
+}

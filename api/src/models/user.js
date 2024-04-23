@@ -27,8 +27,7 @@ const UserScheme = new mongoose.Schema(
     },
     user_type: {
       type: String,
-      enum: ['freelancer', 'recruiter'],
-      required: true
+      enum: ['freelancer', 'recruiter']
     },
     profile_image: {
       type: String

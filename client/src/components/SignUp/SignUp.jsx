@@ -15,6 +15,7 @@ export const SignUp = ({ setOptions }) => {
 
   // eslint-disable-next-line no-useless-escape
   const reg_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+
   const onSubmit = (data) => {
     axios.post(URL_BASE, data)
   }
