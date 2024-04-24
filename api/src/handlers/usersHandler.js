@@ -10,7 +10,9 @@ const handleGetUsers = async (req, res) => {
 }
 
 const addUserHandler = async (req, res) => {
+  console.log(req.body);
   const data = req.body
+  console.log(data);
   try {
     const newUser = await createUser(data)
     res.status(201).json(newUser)

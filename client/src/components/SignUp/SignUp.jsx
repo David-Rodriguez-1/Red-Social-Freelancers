@@ -1,25 +1,28 @@
 import { useForm } from 'react-hook-form'
 import style from './SignUp.module.css'
-import axios from 'axios'
-import { URL_BASE } from '../../redux/action'
+// import toast, { Toaster } from 'react-hot-toast'
+// import axios from 'axios'
+import { addUser } from '../../redux/action'
 // import { useState } from 'react'
 
 // eslint-disable-next-line react/prop-types
 export const SignUp = ({ setOptions }) => {
+  
   const {
     register,
     handleSubmit
     // watch,
     // formState,
   } = useForm()
-
+  
   // eslint-disable-next-line no-useless-escape
   const reg_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
-
+  
   const onSubmit = (data) => {
-    axios.post(URL_BASE, data)
+    addUser(data)
   }
-
+  
+  
   return (
     <>
       <div className={style.container_sign_up}>
