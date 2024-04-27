@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import style from './SignUp.module.css'
 // import toast, { Toaster } from 'react-hot-toast'
 // import axios from 'axios'
-import { addUser } from '../../redux/action'
+// import { addUser } from '../../redux/action'
 // import { useState } from 'react'
 
 // eslint-disable-next-line react/prop-types
@@ -18,9 +18,9 @@ export const SignUp = ({ setOptions }) => {
   // eslint-disable-next-line no-useless-escape
   const reg_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
   
-  const onSubmit = (data) => {
-    addUser(data)
-  }
+  // const onSubmit = (data) => {
+  //   addUser(data)
+  // }
   
   
   return (
@@ -29,7 +29,7 @@ export const SignUp = ({ setOptions }) => {
         <div className={style.login}>
           <h4>Sign Up</h4>
           <i className={style.logo}></i>
-          <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+          <form className={style.form} onSubmit={handleSubmit()}>
             <input
               placeholder="First Name"
               type="text"
