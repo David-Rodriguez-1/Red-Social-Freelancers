@@ -14,14 +14,12 @@ export const Feets = () => {
   }, []);
 
   return (
-    <>
-      <main className={style.main_container}>
+    <main className={style.main_container}>
         <div className={style.container}>
           {users?.map((user) => (
             <Post key={user.id} users={users} />
           ))}
         </div>
       </main>
-    </>
   )
 }

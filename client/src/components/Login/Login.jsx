@@ -16,8 +16,7 @@ export const Login = ({ setOptions }) => {
   const onSubmit = (data) => console.log(data)
 
   return (
-    <>
-      <div className={style.container_login}>
+    <div className={style.container_login}>
         <div className={style.login}>
           <h4>Login</h4>
           <i className={style.logo}></i>
@@ -55,6 +54,5 @@ export const Login = ({ setOptions }) => {
           </button>
         </div>
       </div>
-    </>
   )
 }
