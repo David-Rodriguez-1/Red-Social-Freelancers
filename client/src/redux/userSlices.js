@@ -19,16 +19,17 @@ export const fetchUsers = () => async (dispatch) => {
     dispatch(usersSlice.actions.setUsers(users))
   } catch (error) {
     console.error('Error fetching users:', error)
-  }
+  } 
 }
 
-export const createUser = (user) => async () => {
+export const createUser = (data) => async () => {
+  console.log(data);
   try {
-    const newUser = await addUser(user)
+    const newUser = await addUser(data)
     return newUser
   } catch (error) {
     console.error('Error adding user:', error)
   }
 }
 
-export default usersSlice
+export default usersSlice.reducer
