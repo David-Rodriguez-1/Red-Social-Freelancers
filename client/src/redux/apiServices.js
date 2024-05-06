@@ -10,12 +10,3 @@ export const readUsers = async () => {
     console.log(error)
   }
 }
-
-export const addUser = async (user) => {
-  try {
-    const { data } = await axios.get(`${URL_BASE}`, user)
-    return data
-  } catch (error) {
-    console.log(error)
-  }
-}

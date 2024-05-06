@@ -1,9 +1,10 @@
 import { useForm } from 'react-hook-form'
 import style from './Login.module.css'
 import { Link } from 'react-router-dom'
+import { reg_email } from './regexs'
+import PropTypes from 'prop-types'
 
-// eslint-disable-next-line react/prop-types
-export const Login = ({ setOptions }) => {
+export const Login = ({ setOption }) => {
   const {
     register,
     handleSubmit
@@ -11,8 +12,6 @@ export const Login = ({ setOptions }) => {
     // formState,
   } = useForm()
 
-  // eslint-disable-next-line no-useless-escape
-  const reg_email = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
   const onSubmit = (data) => console.log(data)
 
   return (
@@ -49,10 +48,14 @@ export const Login = ({ setOptions }) => {
           </form>
           <button
             className={style.create_account}
-            onClick={() => setOptions('signup')}>
+            onClick={() => setOption('signup')}>
             {`Don't have an account? Sign Up`}
           </button>
         </div>
       </div>
   )
+}
+
+Login.propTypes = {
+  setOption: PropTypes.func.isRequired
 }

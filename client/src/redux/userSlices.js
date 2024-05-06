@@ -1,35 +1,35 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { readUsers, addUser } from './apiServices'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import axios from 'axios'
+
+export const URL_BASE = 'http://localhost:3001'
+
+export const createUser = createAsyncThunk('/', async (data) => {
+  const newUser = await axios.post(URL_BASE, data)
+    return newUser.data
+})
+
+export const fetchUsers = createAsyncThunk('/home', async () => {
+  const users = await axios.get(URL_BASE)
+  return users.data
+})
 
 const usersSlice = createSlice({
   name: 'users',
-  initialState: {
-    data: []
-  },
+  initialState: [],
   reducers: {
-    setUsers(state, action) {
-      state.data = action.payload
+    createUser(state, action) {
+      state.data.push(action.payload)
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUsers.fulfilled, (state, action) => {
+      return action.payload
+    })
   }
 })
 
-export const fetchUsers = () => async (dispatch) => {
-  try {
-    const users = await readUsers()
-    dispatch(usersSlice.actions.setUsers(users))
-  } catch (error) {
-    console.error('Error fetching users:', error)
-  } 
-}
 
-export const createUser = (data) => async () => {
-  console.log(data);
-  try {
-    const newUser = await addUser(data)
-    return newUser
-  } catch (error) {
-    console.error('Error adding user:', error)
-  }
-}
+
+
 
 export default usersSlice.reducer

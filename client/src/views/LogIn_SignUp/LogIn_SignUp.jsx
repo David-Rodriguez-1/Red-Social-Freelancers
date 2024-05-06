@@ -3,14 +3,13 @@ import { Login, SignUp } from '../../components/index'
 import style from './style.module.css'
 
 export const Login_SignUp = () => {
-  const [option, setOptions] = useState('signin')
-  console.log(option)
+  const [option, setOption] = useState('signin')
   return (
     <div className={style.container}>
       {option === 'signin' ? (
-        <Login setOptions={setOptions} />
+        <Login setOption={setOption} />
       ) : (
-        <SignUp setOptions={setOptions} />
+        <SignUp setOption={setOption} />
       )}
     </div>
   )
