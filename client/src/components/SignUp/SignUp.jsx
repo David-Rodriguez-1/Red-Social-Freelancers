@@ -8,10 +8,12 @@ import PropTypes from 'prop-types'
 export const SignUp = ({ setOption }) => {
   const {
     register,
-    handleSubmit
+    handleSubmit,
     // watch,
-    // formState,
+    formState: { errors }
   } = useForm()
+
+  console.log(errors)
 
   const dispatch = useDispatch()
 
@@ -26,19 +28,19 @@ export const SignUp = ({ setOption }) => {
         <i className={style.logo}></i>
         <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <input
-            placeholder="First Name"
+            placeholder="Nombre"
             type="text"
             {...register('name', { required: true })}
           />
 
           <input
-            placeholder="Last Name"
+            placeholder="Apellidos"
             type="text"
             {...register('last_name', { required: true })}
           />
 
           <input
-            placeholder="Username"
+            placeholder="Usuario"
             type="text"
             {...register('username', { required: true })}
           />
@@ -55,10 +57,23 @@ export const SignUp = ({ setOption }) => {
             {...register('password', { required: true })}
           />
 
+          <input
+            placeholder="Repetir contraseña"
+            type="password"
+            {...register('r-password', {
+              required: 'Las contraseñas no coinciden'
+            })}
+          />
+
           <button className={style.button_submit_signup} type="submit">
             Register
           </button>
         </form>
+
+        {/* {watch('password') !== watch('r-password') ? (
+          <p className={style.error_password}>Las contraseñas no coinciden</p>
+        ) : null} */}
+
         <button
           className={style.create_account}
           onClick={() => setOption('signin')}>
