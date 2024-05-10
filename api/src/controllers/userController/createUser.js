@@ -5,7 +5,7 @@ const createUser = async (user) => {
     const newUser = await User.create(user)
     return newUser
   } catch (error) {
-    console.log('Erorr al agregar el usuario: ', error)
+    throw error(error)
   }
 }
 

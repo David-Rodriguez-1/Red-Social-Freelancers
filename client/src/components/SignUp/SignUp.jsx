@@ -9,11 +9,9 @@ export const SignUp = ({ setOption }) => {
   const {
     register,
     handleSubmit,
-    // watch,
+    watch,
     formState: { errors }
   } = useForm()
-
-  console.log(errors)
 
   const dispatch = useDispatch()
 
@@ -60,20 +58,18 @@ export const SignUp = ({ setOption }) => {
           <input
             placeholder="Repetir contraseña"
             type="password"
-            {...register('r-password', {
-              required: 'Las contraseñas no coinciden'
+            {...register('r_password', {
+              required: true,
+              validate: (value) =>
+                value === watch('password') || 'Las contraseñas no coinciden'
             })}
           />
 
           <button className={style.button_submit_signup} type="submit">
             Register
           </button>
+          {errors.r_password && <p className='font-bold text-red-600'>{errors.r_password.message}</p>}
         </form>
-
-        {/* {watch('password') !== watch('r-password') ? (
-          <p className={style.error_password}>Las contraseñas no coinciden</p>
-        ) : null} */}
-
         <button
           className={style.create_account}
           onClick={() => setOption('signin')}>

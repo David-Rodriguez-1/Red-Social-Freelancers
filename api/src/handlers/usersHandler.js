@@ -15,7 +15,7 @@ const addUserHandler = async (req, res) => {
     const newUser = await createUser(data)
     res.status(201).json(newUser)
   } catch (error) {
-    console.log({ mensaje_de_error: error })
+    res.status(500).json(error.message)
   }
 }
 
