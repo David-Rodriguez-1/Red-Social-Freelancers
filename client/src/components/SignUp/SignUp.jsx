@@ -1,7 +1,9 @@
 import { useForm } from 'react-hook-form'
+// import { useNavigate } from 'react-router-dom'
 import style from './SignUp.module.css'
-import { createUser } from '../../redux/userSlices'
-import { useDispatch } from 'react-redux'
+import { createUserAsync } from '../../redux/userSlices'
+import toast, { Toaster } from 'react-hot-toast'
+import { useDispatch, useSelector } from 'react-redux'
 import { reg_email } from '../Login/regexs'
 import PropTypes from 'prop-types'
 
@@ -14,10 +16,22 @@ export const SignUp = ({ setOption }) => {
   } = useForm()
 
   const dispatch = useDispatch()
+  // const navigate = useNavigate()
 
+  let error = useSelector((state) => state.users.error)
+
+  console.log(error);
   const onSubmit = (data) => {
-    dispatch(createUser(data))
+    try {
+      if (error) {
+        return toast.error(error)
+      }
+      dispatch(createUserAsync(data))
+    } catch (error) {
+      console.log(error)
+    }
   }
+  error = null
 
   return (
     <div className={style.container_sign_up}>
@@ -65,10 +79,16 @@ export const SignUp = ({ setOption }) => {
             })}
           />
 
-          <button className={style.button_submit_signup} type="submit">
+          <button
+            className={style.button_submit_signup}
+            type="submit">
             Register
           </button>
-          {errors.r_password && <p className='font-bold text-red-600'>{errors.r_password.message}</p>}
+          {errors.r_password && (
+            <p className="font-bold text-red-600">
+              {errors.r_password.message}
+            </p>
+          )}
         </form>
         <button
           className={style.create_account}
@@ -76,6 +96,7 @@ export const SignUp = ({ setOption }) => {
           {`Don't have an account? Sign In`}
         </button>
       </div>
+      <Toaster />
     </div>
   )
 }

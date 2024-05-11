@@ -1,14 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const URL_BASE = 'http://localhost:3001'
+export const URL_BASE = 'http://localhost:3001/'
 
-export const createUser = createAsyncThunk('/', async (data) => {
-  const newUser = await axios.post(URL_BASE, data).catch(error => console.log(error))
-  console.log(newUser);
+export const createUserAsync = createAsyncThunk('/', async (data) => {
+  try {
+    const newUser = await axios.post(`${URL_BASE}`, data)
     return newUser.data
+  } catch (error) {
+    console.error(error.response.data.message)
+    throw error.response.data.message
+  }
 })
-
 
 export const fetchUsers = createAsyncThunk('/home', async () => {
   const users = await axios.get(URL_BASE)
@@ -17,22 +20,26 @@ export const fetchUsers = createAsyncThunk('/home', async () => {
 
 const usersSlice = createSlice({
   name: 'users',
-  initialState: [],
+  initialState: { data: [], user: null, error: null },
   reducers: {
     createUser(state, action) {
-      console.log(createUser);
+      console.log(action.payload)
       state.data.push(action.payload)
     }
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
-      return action.payload
+      state.data = action.payload
+    })
+    builder.addCase(createUserAsync.fulfilled, (state, action) => {
+      state.user = action.payload
+      state.error = null
+    })
+    builder.addCase(createUserAsync.rejected, (state, action) => {
+      state.user = null
+      state.error = action.error.message
     })
   }
 })
-
-
-
-
 
 export default usersSlice.reducer

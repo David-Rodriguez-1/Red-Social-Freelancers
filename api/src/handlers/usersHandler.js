@@ -9,13 +9,13 @@ const handleGetUsers = async (req, res) => {
   }
 }
 
-const addUserHandler = async (req, res) => {
+const addUserHandler = (req, res) => {
   const data = req.body
   try {
-    const newUser = await createUser(data)
+    const newUser = createUser(data)
     res.status(201).json(newUser)
   } catch (error) {
-    res.status(500).json(error.message)
+    res.status(400).json(error.message)
   }
 }
 
