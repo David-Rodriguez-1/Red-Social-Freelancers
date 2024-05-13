@@ -1,8 +1,12 @@
 import style from './Post.module.css'
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
 
-export const Post = ({ user }) => {
-  console.log(user)
+export const Post = () => {
+
+  const posts = useSelector(state => state.users.posts)
+  const user = useSelector((state) => state.users.data)
+
   return (
     <div className={style.post_container}>
       <div className={style.head_post}></div>
@@ -12,7 +16,7 @@ export const Post = ({ user }) => {
           <h2 className="card-title">
             {user.name} {user.last_name}
           </h2>
-          <p>{user.posts}</p>
+          <p>{posts.description}</p>
         </div>
         <figure>
           <img

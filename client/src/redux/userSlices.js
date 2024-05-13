@@ -18,12 +18,16 @@ export const fetchUsers = createAsyncThunk('/home', async () => {
   return users.data
 })
 
+export const fetchPosts = createAsyncThunk('/post', async () => {
+  const posts = await axios.get(`${URL_BASE}post`)
+  return posts.data
+})
+
 const usersSlice = createSlice({
   name: 'users',
-  initialState: { data: [], user: null, error: null },
+  initialState: { data: [], user: null, state: null, error: null, posts: [] },
   reducers: {
     createUser(state, action) {
-      console.log(action.payload)
       state.data.push(action.payload)
     }
   },
@@ -31,13 +35,23 @@ const usersSlice = createSlice({
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
       state.data = action.payload
     })
-    builder.addCase(createUserAsync.fulfilled, (state, action) => {
-      state.user = action.payload
+    builder.addCase(createUserAsync.pending, (state) => {
+      state.user = null
       state.error = null
+      state.state = 'Cargando...'
     })
     builder.addCase(createUserAsync.rejected, (state, action) => {
       state.user = null
       state.error = action.error.message
+      state.state = null
+    })
+    builder.addCase(createUserAsync.fulfilled, (state, action) => {
+      state.user = action.payload
+      state.state = 'Usuario creado'
+      state.error = null
+    })
+    builder.addCase(fetchPosts.fulfilled, (state, action) => {
+      state.posts = action.payload
     })
   }
 })

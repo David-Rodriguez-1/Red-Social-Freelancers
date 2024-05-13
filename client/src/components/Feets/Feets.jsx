@@ -1,20 +1,16 @@
 // import { useState } from "react"
 import { Post } from '../Post/Post'
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 import style from './Feets.module.css'
 
 export const Feets = () => {
-  const users = useSelector((state) => state.users)
-
-  useEffect(() => {}, [])
+  // const users = useSelector((state) => state.users)
+  // const posts = useSelector((state) => state.posts)
 
   return (
     <main className={style.main_container}>
       <div className={style.container}>
-        {users?.map((user) => (
-          <Post key={user.id} user={users} />
-        ))}
+          <Post />
       </div>
     </main>
   )

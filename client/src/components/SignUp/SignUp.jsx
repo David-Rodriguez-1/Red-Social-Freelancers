@@ -1,11 +1,12 @@
 import { useForm } from 'react-hook-form'
-// import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import style from './SignUp.module.css'
 import { createUserAsync } from '../../redux/userSlices'
 import toast, { Toaster } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { reg_email } from '../Login/regexs'
 import PropTypes from 'prop-types'
+import { useEffect } from 'react'
 
 export const SignUp = ({ setOption }) => {
   const {
@@ -16,22 +17,32 @@ export const SignUp = ({ setOption }) => {
   } = useForm()
 
   const dispatch = useDispatch()
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
+  let { error, state } = useSelector((state) => state.users)
 
-  let error = useSelector((state) => state.users.error)
+  useEffect(() => {
+    let toastId = null
 
-  console.log(error);
-  const onSubmit = (data) => {
-    try {
-      if (error) {
-        return toast.error(error)
-      }
-      dispatch(createUserAsync(data))
-    } catch (error) {
-      console.log(error)
+    if (state === 'Cargando...') {
+      toastId = toast.loading(state)
     }
+    if (error) {
+      toast.dismiss(toastId)
+      toast.error(error)
+    }
+    if (state === 'Usuario creado') {
+      toast.dismiss(toastId)
+      toast.success(state)
+    }
+  }, [state, error])
+
+  const onSubmit = (data) => {
+    toast.promise(
+      dispatch(createUserAsync(data)),
+      { success: 'Usuario creado' },
+      navigate('/home')
+    )
   }
-  error = null
 
   return (
     <div className={style.container_sign_up}>
@@ -79,9 +90,7 @@ export const SignUp = ({ setOption }) => {
             })}
           />
 
-          <button
-            className={style.button_submit_signup}
-            type="submit">
+          <button className={style.button_submit_signup} type="submit">
             Register
           </button>
           {errors.r_password && (

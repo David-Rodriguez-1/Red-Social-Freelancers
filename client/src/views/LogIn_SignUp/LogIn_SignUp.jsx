@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Login, SignUp } from '../../components/index'
 import style from './style.module.css'
 
-export const Login_SignUp = () => {
+export const LoginSignUp = () => {
   const [option, setOption] = useState('signin')
   return (
     <div className={style.container}>
