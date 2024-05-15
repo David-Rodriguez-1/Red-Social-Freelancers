@@ -3,6 +3,7 @@ import axios from 'axios'
 
 export const URL_BASE = 'http://localhost:3001/'
 
+//Creacion de usuario
 export const createUserAsync = createAsyncThunk('/', async (data) => {
   try {
     const newUser = await axios.post(`${URL_BASE}`, data)
@@ -13,11 +14,35 @@ export const createUserAsync = createAsyncThunk('/', async (data) => {
   }
 })
 
+// Login
+export const loginUserAsync = createAsyncThunk('/', async (data) => {
+  try {
+    const user = await axios.post(`${URL_BASE}login`, data)
+    return user.data
+  } catch (error) {
+    console.error(error)
+    throw error.response.data.message
+  }
+})
+
+// Obtener todos los usuarios
 export const fetchUsers = createAsyncThunk('/home', async () => {
   const users = await axios.get(URL_BASE)
   return users.data
 })
 
+//Creación del post por usuario
+export const createPostUserAsync = createAsyncThunk('/', async (data) => {
+  try {
+    const newPost = await axios.post(`${URL_BASE}`, data)
+    return newPost.data
+  } catch (error) {
+    console.error(error.response.data.message)
+    throw error.response.data.message
+  }
+})
+
+// Obtener todos los posts
 export const fetchPosts = createAsyncThunk('/post', async () => {
   const posts = await axios.get(`${URL_BASE}post`)
   return posts.data

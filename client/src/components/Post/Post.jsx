@@ -1,11 +1,11 @@
 import style from './Post.module.css'
-import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
 
 export const Post = () => {
 
   const posts = useSelector(state => state.users.posts)
   const user = useSelector((state) => state.users.data)
+  console.log(posts);
 
   return (
     <div className={style.post_container}>
@@ -27,8 +27,4 @@ export const Post = () => {
       </div>
     </div>
   )
-}
-
-Post.propTypes = {
-  users: PropTypes.func.isRequired
 }

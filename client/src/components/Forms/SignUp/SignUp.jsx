@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import style from './SignUp.module.css'
-import { createUserAsync } from '../../redux/userSlices'
+import { createUserAsync } from '../../../redux/userSlices'
 import toast, { Toaster } from 'react-hot-toast'
 import { useDispatch, useSelector } from 'react-redux'
 import { reg_email } from '../Login/regexs'

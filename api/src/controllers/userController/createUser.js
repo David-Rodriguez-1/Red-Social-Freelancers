@@ -1,4 +1,5 @@
 const { User } = require('../../models/index')
+const bcrypt = require('bcrypt')
 
 const createUser = async (req, res) => {
   try {
@@ -12,15 +13,19 @@ const createUser = async (req, res) => {
     if (user_repeat)
       return res.status(400).json({ message: 'El email ya existe' })
 
+    const passwordHash = await bcrypt.hash(password, 10)
+
     const newUsers = await User.create({
       email,
       last_name,
       name,
-      password,
+      password: passwordHash,
       username
     })
 
     res.status(201).json(newUsers)
+    return newUsers
+
   } catch (error) {
     console.log('error del back', error)
     return res.status(500).json({ error: error.message })

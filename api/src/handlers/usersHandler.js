@@ -1,4 +1,4 @@
-const { getUsers, createUser } = require('../controllers/userController/index')
+const { getUsers } = require('../controllers/userController/index')
 
 const handleGetUsers = async (req, res) => {
   try {
@@ -9,14 +9,4 @@ const handleGetUsers = async (req, res) => {
   }
 }
 
-const addUserHandler = (req, res) => {
-  const data = req.body
-  try {
-    const newUser = createUser(data)
-    res.status(201).json(newUser)
-  } catch (error) {
-    res.status(400).json(error.message)
-  }
-}
-
-module.exports = { handleGetUsers, addUserHandler }
+module.exports = { handleGetUsers }
