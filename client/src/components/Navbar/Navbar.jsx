@@ -7,11 +7,16 @@ import { Link } from 'react-router-dom'
 import { useOutsideClick } from '../../hooks/useOutsideClick'
 
 export const Narbar = () => {
-  const { ref, isOpen, setIsOpen } = useOutsideClick(false, () => {})
+  const { ref, isOpen, setIsOpen } = useOutsideClick(false, () => { })
+  
+  const onKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      setIsOpen(!isOpen);
+    }
+  }
 
   return (
-    <>
-      <nav className={style.nav_container} ref={ref}>
+    <nav className={style.nav_container} ref={ref}>
         <Link className={style.logo_nav} to={'/home'}>
           <i>F</i>
         </Link>
@@ -49,7 +54,8 @@ export const Narbar = () => {
         <div className={style.menu_perfil}>
           <img
             className={style.img_perfil}
-            onClick={() => setIsOpen(!isOpen)}
+          onClick={() => setIsOpen(!isOpen)}
+          onKeyDown={onKeyDown}
             src="https://avatars.githubusercontent.com/u/105451356?s=400&u=cbf6972a527c11de3916994407358ebeb7521fb7&v=4"
             alt=""
           />
@@ -68,6 +74,5 @@ export const Narbar = () => {
           )}
         </div>
       </nav>
-    </>
   )
 }

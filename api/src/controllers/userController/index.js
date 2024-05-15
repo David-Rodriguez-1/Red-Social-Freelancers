@@ -5,11 +5,15 @@ const {
   unfollowUserController
 } = require('./followUserController')
 const { updateUser } = require('./updateUser')
+const { getPosts } = require('./postsController')
+const { login } = require('./login')
 
 module.exports = {
   getUsers,
   createUser,
   connectionController,
   unfollowUserController,
-  updateUser
+  updateUser,
+  getPosts,
+  login
 }

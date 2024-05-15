@@ -1,6 +1,6 @@
 const { Posts, User } = require('../../models/index')
 
-const findPosts = async () => {
+const getPosts = async () => {
   try {
     const posts = await Posts.find()
     return posts
@@ -24,4 +24,4 @@ const addPostUser = async (post) => {
   }
 }
 
-module.exports = { addPostUser, findPosts }
+module.exports = { addPostUser, getPosts }

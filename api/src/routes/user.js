@@ -1,8 +1,6 @@
 const { Router } = require('express')
-const {
-  handleGetUsers,
-  addUserHandler
-} = require('../handlers/usersHandler')
+const { handleGetUsers } = require('../handlers/usersHandler')
+const { createUser, login } = require('../controllers/userController/index')
 const {
   followUserHandler,
   unfollowUserHandler
@@ -11,7 +9,8 @@ const {
 const users = Router()
 
 users.get('/', handleGetUsers)
-users.post('/', addUserHandler)
+users.post('/', createUser)
+users.post('/login', login)
 users.post('/follow', followUserHandler)
 users.put('/follow', unfollowUserHandler)
 
