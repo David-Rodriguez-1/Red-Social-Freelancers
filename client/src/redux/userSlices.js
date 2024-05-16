@@ -17,11 +17,12 @@ export const createUserAsync = createAsyncThunk('/', async (data) => {
 // Login
 export const loginUserAsync = createAsyncThunk('/', async (data) => {
   try {
-    const user = await axios.post(`${URL_BASE}login`, data)
-    return user.data
+    const authUser = await axios
+      .post(`${URL_BASE}login`, data)
+      .then((res) => res.data)
+    return authUser
   } catch (error) {
-    console.error(error)
-    throw error.response.data.message
+    return error.response.data
   }
 })
 
