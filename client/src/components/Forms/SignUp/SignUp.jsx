@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import style from './SignUp.module.css'
 import { createUserAsync } from '../../../redux/userSlices'
 import toast, { Toaster } from 'react-hot-toast'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { reg_email } from '../Login/regexs'
 import PropTypes from 'prop-types'
-import { useEffect } from 'react'
 
 export const SignUp = ({ setOption }) => {
   const {
@@ -18,30 +17,17 @@ export const SignUp = ({ setOption }) => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  let { error, state } = useSelector((state) => state.users)
-
-  useEffect(() => {
-    let toastId = null
-
-    if (state === 'Cargando...') {
-      toastId = toast.loading(state)
-    }
-    if (error) {
-      toast.dismiss(toastId)
-      toast.error(error)
-    }
-    if (state === 'Usuario creado') {
-      toast.dismiss(toastId)
-      toast.success(state)
-    }
-  }, [state, error])
 
   const onSubmit = (data) => {
-    toast.promise(
-      dispatch(createUserAsync(data)),
-      { success: 'Usuario creado' },
-      navigate('/home')
-    )
+    const response = dispatch(createUserAsync(data))
+      .then(res => {
+      if (res.error) toast.error(res.error.message)
+      else {
+        toast.success("Usuario creado")
+        navigate('/home')
+      }
+      })
+    return response
   }
 
   return (

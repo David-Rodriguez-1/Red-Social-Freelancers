@@ -1,14 +1,13 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
+import toast, { Toaster } from 'react-hot-toast'
 import style from './Login.module.css'
-import { Link } from 'react-router-dom'
 import { reg_email } from './regexs'
 import { loginUserAsync } from '../../../redux/userSlices'
 import PropTypes from 'prop-types'
 
 export const Login = ({ setOption }) => {
-
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -20,8 +19,15 @@ export const Login = ({ setOption }) => {
   } = useForm()
 
   const onSubmit = (data) => {
-    dispatch(loginUserAsync(data))
-    navigate('/home')
+    const response = dispatch(loginUserAsync(data))
+      .then((res) => {
+        if (res.payload.error) toast.error(res.payload.error)
+        else {
+          toast.success(res.payload.message)
+          navigate('/home')
+        }
+      })
+    return response
   }
 
   return (
@@ -62,6 +68,7 @@ export const Login = ({ setOption }) => {
           {`Don't have an account? Sign Up`}
         </button>
       </div>
+      <Toaster />
     </div>
   )
 }
