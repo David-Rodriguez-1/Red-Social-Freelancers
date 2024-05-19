@@ -1,3 +1,21 @@
 .container_post_form {
-  width: 70%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 555px;
+  height: 116px;
+  background-color: blueviolet;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.img_perfil{
+  border-radius: 50%;
+}
+
+.main_container{
+  width: 100%;
+  height: 100vh;
+  background-color: black;
 }

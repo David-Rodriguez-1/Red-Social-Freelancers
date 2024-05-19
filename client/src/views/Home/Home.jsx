@@ -1,4 +1,4 @@
-import { Feets, Narbar } from '../../components/index'
+import { Feets, Narbar, PostCreate } from '../../components/index'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchUsers, fetchPosts } from '../../redux/userSlices'
@@ -13,7 +13,8 @@ export const Home = () => {
 
   return (
     <div>
-      <Narbar/>
+      <Narbar />
+      <PostCreate />
       <Feets />
     </div>
   )
