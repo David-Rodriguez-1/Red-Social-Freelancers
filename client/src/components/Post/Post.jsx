@@ -5,7 +5,6 @@ export const Post = () => {
 
   const posts = useSelector(state => state.users.posts)
   const user = useSelector((state) => state.users.data)
-  console.log(posts);
 
   return (
     <div className={style.post_container}>
