@@ -17,25 +17,33 @@ export const PostCreate = () => {
   return (
     <div className={style.main_container}>
       <div className={style.container_post_form}>
-        <form action="" onSubmit={handleSubmit(onSubmit)}>
-          <div>
+        <form
+          className={style.form_post}
+          action=""
+          onSubmit={handleSubmit(onSubmit)}>
+          <div className={style.input_img}>
             {/* colocar ruta del perfil */}
-            <Link to={'ruta del perfil'}>
-              <div className="w-fit relative">
+            <div className={style.img_perfil}>
+              <Link to={'ruta del perfil'}>
                 <img
-                  className="rounded-full relative w-fit"
+                  className={style.img}
                   src="https://media.licdn.com/dms/image/D4D35AQFAh797EfmhyQ/profile-framedphoto-shrink_400_400/0/1703182248300?e=1716696000&v=beta&t=f0dmHinlq8YipwqsavgjTJXXcHtTmKlOTnyHfo2XDE0"
                   alt="Ver el perfil de ..."
                 />
-              </div>
-            </Link>
+              </Link>
+            </div>
             <input
               className={style.description}
               type="text"
-              name=""
-              id=""
+              placeholder="Crear publicación"
               {...register('content')}
             />
+          </div>
+          <div className={style.input_files_container}>
+            {/* <button className={style.button_media}> */}
+              <input id='media' className={style.input_media} type="file" />
+            {/* </button> */}
+            <button className={style.button_post}>Publicar</button>
           </div>
         </form>
       </div>
