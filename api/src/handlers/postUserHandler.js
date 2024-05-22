@@ -10,6 +10,7 @@ try {
 }
 
 const addPostUserHandler = async (req, res) => {
+  console.log(req.body);
   const post = req.body
   try {
     const newPost = await addPostUser(post)

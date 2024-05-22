@@ -12,7 +12,7 @@ const login = async (req, res) => {
     if (!isMatch)
       return res.status(400).json({ error: 'Contraseña incorrecta' })
 
-    return res.status(201).json({message: 'Ingreso autorizado'})
+    return res.status(201).json(user)
   } catch (error) {
     console.log('error del back', error)
     return res.status(500).json({ error: error.message })

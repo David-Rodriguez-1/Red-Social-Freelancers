@@ -1,6 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import style from './PostCreate.module.css'
+import { GoFileMedia } from 'react-icons/go'
 import { Link } from 'react-router-dom'
+import { createPostUserAsync } from '../../redux/userSlices'
 
 export const PostCreate = () => {
   const {
@@ -10,8 +13,14 @@ export const PostCreate = () => {
     // formState,
   } = useForm()
 
+  const dispatch = useDispatch()
+
+  const user = useSelector((state) => state.users.user)
+
   const onSubmit = (data) => {
-    console.log(data)
+    const content = data.content
+    const id_user = user._id
+    dispatch(createPostUserAsync({ id_user, content }))
   }
 
   return (
@@ -41,7 +50,11 @@ export const PostCreate = () => {
           </div>
           <div className={style.input_files_container}>
             {/* <button className={style.button_media}> */}
-              <input id='media' className={style.input_media} type="file" />
+            <input id="media" className={style.input_media} type="file" />
+            <label className={style.button_media} htmlFor="media">
+              <GoFileMedia className="w-9 size-7" />
+              Seleccionar archivo
+            </label>
             {/* </button> */}
             <button className={style.button_post}>Publicar</button>
           </div>

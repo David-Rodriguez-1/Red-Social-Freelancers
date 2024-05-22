@@ -16,14 +16,14 @@ export const createUserAsync = createAsyncThunk('/', async (data) => {
 })
 
 // Login
-export const loginUserAsync = createAsyncThunk('/', async (data) => {
+export const loginUserAsync = createAsyncThunk('/login', async (data) => {
   try {
     const authUser = await axios
       .post(`${URL_BASE}login`, data)
       .then((res) => res.data)
     return authUser
   } catch (error) {
-    return error.response.data
+    throw new Error(error.response.data)
   }
 })
 
@@ -34,9 +34,9 @@ export const fetchUsers = createAsyncThunk('/home', async () => {
 })
 
 //Creación del post por usuario
-export const createPostUserAsync = createAsyncThunk('/', async (data) => {
+export const createPostUserAsync = createAsyncThunk('/home', async (data) => {
   try {
-    const newPost = await axios.post(`${URL_BASE}`, data)
+    const newPost = await axios.post(`${URL_BASE}post`, data)
     return newPost.data
   } catch (error) {
     console.error(error.response.data.message)
@@ -72,13 +72,16 @@ const usersSlice = createSlice({
       state.error = action.error.message
       state.state = null
     })
-    builder.addCase(createUserAsync.fulfilled, (state, action) => {
-      state.user = action.payload
+    builder.addCase(createUserAsync.fulfilled, (state) => {
+      // state.user = action.payload
       state.state = 'Usuario creado'
       state.error = null
     })
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.posts = action.payload
+    })
+    builder.addCase(loginUserAsync.fulfilled, (state, action) => {
+      state.user = action.payload // Aquí seteas el usuario que se logeó
     })
   }
 })
