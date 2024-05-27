@@ -6,7 +6,7 @@ const PostsScheme = new mongoose.Schema({
     ref: 'User',
     require: true
   },
-  image: {
+  media: {
     type: String
   },
   content: {

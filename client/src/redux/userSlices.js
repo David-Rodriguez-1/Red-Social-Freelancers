@@ -7,24 +7,28 @@ export const URL_BASE = 'http://localhost:3001/'
 export const createUserAsync = createAsyncThunk('/', async (data) => {
   try {
     const newUser = await axios.post(`${URL_BASE}`, data)
-    console.log(newUser);
     return newUser.data
   } catch (error) {
-    console.error(error.response.data.message)
     throw error.response.data.message
   }
 })
 
 // Login
-export const loginUserAsync = createAsyncThunk('/login', async (data) => {
+export const loginUserAsync = createAsyncThunk('/*', async (data) => {
   try {
     const authUser = await axios
       .post(`${URL_BASE}login`, data)
       .then((res) => res.data)
+    localStorage.setItem('auth', JSON.stringify({ user: authUser }))
     return authUser
   } catch (error) {
-    throw new Error(error.response.data)
+    return error.response.data
   }
+})
+
+//logout
+export const logoutUserAsync = createAsyncThunk('/home*', async () => {
+    localStorage.removeItem('auth')
 })
 
 // Obtener todos los usuarios
@@ -42,12 +46,6 @@ export const createPostUserAsync = createAsyncThunk('/home', async (data) => {
     console.error(error.response.data.message)
     throw error.response.data.message
   }
-})
-
-// Obtener todos los posts
-export const fetchPosts = createAsyncThunk('/post', async () => {
-  const posts = await axios.get(`${URL_BASE}post`)
-  return posts.data
 })
 
 const usersSlice = createSlice({
@@ -72,16 +70,16 @@ const usersSlice = createSlice({
       state.error = action.error.message
       state.state = null
     })
-    builder.addCase(createUserAsync.fulfilled, (state) => {
-      // state.user = action.payload
+    builder.addCase(createUserAsync.fulfilled, (state, action) => {
+      state.user = action.payload
       state.state = 'Usuario creado'
       state.error = null
     })
-    builder.addCase(fetchPosts.fulfilled, (state, action) => {
-      state.posts = action.payload
-    })
     builder.addCase(loginUserAsync.fulfilled, (state, action) => {
-      state.user = action.payload // Aquí seteas el usuario que se logeó
+      state.user = action.payload
+    })
+    builder.addCase(logoutUserAsync.fulfilled, (state) => {
+      state.user = null
     })
   }
 })

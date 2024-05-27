@@ -16,8 +16,10 @@ export const PostCreate = () => {
   const dispatch = useDispatch()
 
   const user = useSelector((state) => state.users.user)
+  console.log(user);
 
   const onSubmit = (data) => {
+    console.log(data);
     const content = data.content
     const id_user = user._id
     dispatch(createPostUserAsync({ id_user, content }))
@@ -50,7 +52,7 @@ export const PostCreate = () => {
           </div>
           <div className={style.input_files_container}>
             {/* <button className={style.button_media}> */}
-            <input id="media" className={style.input_media} type="file" />
+            <input id="media" className={style.input_media} type="file" {...register('media')} />
             <label className={style.button_media} htmlFor="media">
               <GoFileMedia className="w-9 size-7" />
               Seleccionar archivo

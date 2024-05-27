@@ -1,5 +1,6 @@
 const { User } = require('../../models/index')
 const bcrypt = require('bcrypt')
+const UserScheme = require('../../models/user')
 
 const login = async (req, res) => {
   try {
@@ -11,7 +12,6 @@ const login = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch)
       return res.status(400).json({ error: 'Contraseña incorrecta' })
-
     return res.status(201).json(user)
   } catch (error) {
     console.log('error del back', error)
