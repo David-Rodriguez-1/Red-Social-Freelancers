@@ -4,7 +4,7 @@ import axios from 'axios'
 export const URL_BASE = 'http://localhost:3001/'
 
 //Creacion de usuario
-export const createUserAsync = createAsyncThunk('/', async (data) => {
+export const createUserAsync = createAsyncThunk('user/create', async (data) => {
   try {
     const newUser = await axios.post(`${URL_BASE}`, data)
     return newUser.data
@@ -14,7 +14,7 @@ export const createUserAsync = createAsyncThunk('/', async (data) => {
 })
 
 // Login
-export const loginUserAsync = createAsyncThunk('/*', async (data) => {
+export const loginUserAsync = createAsyncThunk('login/user', async (data) => {
   try {
     const authUser = await axios
       .post(`${URL_BASE}login`, data)
@@ -27,30 +27,19 @@ export const loginUserAsync = createAsyncThunk('/*', async (data) => {
 })
 
 //logout
-export const logoutUserAsync = createAsyncThunk('/home*', async () => {
+export const logoutUserAsync = createAsyncThunk('logout/user', async () => {
     localStorage.removeItem('auth')
 })
 
 // Obtener todos los usuarios
-export const fetchUsers = createAsyncThunk('/home', async () => {
+export const fetchUsers = createAsyncThunk('user/fetch', async () => {
   const users = await axios.get(URL_BASE)
   return users.data
 })
 
-//Creación del post por usuario
-export const createPostUserAsync = createAsyncThunk('/home', async (data) => {
-  try {
-    const newPost = await axios.post(`${URL_BASE}post`, data)
-    return newPost.data
-  } catch (error) {
-    console.error(error.response.data.message)
-    throw error.response.data.message
-  }
-})
-
 const usersSlice = createSlice({
   name: 'users',
-  initialState: { data: [], user: null, state: null, error: null, posts: [] },
+  initialState: { data: [], user: null, state: null, error: null},
   reducers: {
     createUser(state, action) {
       state.data.push(action.payload)

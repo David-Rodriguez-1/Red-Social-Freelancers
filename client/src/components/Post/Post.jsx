@@ -10,7 +10,7 @@ export const Post = () => {
   }]
   console.log(dataPost);
 
-  const posts = useSelector(state => state.users.posts)
+  const posts = useSelector(state => state.posts)
   console.log(posts);
   const user = useSelector((state) => state.users.user)
   console.log(user);

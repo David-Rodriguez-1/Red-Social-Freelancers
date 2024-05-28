@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form'
 import style from './PostCreate.module.css'
 import { GoFileMedia } from 'react-icons/go'
 import { Link } from 'react-router-dom'
-import { createPostUserAsync } from '../../redux/userSlices'
+import { createPostUserAsync } from '../../redux/postsSlices'
+import { useState } from 'react'
 
 export const PostCreate = () => {
   const {
@@ -16,13 +17,21 @@ export const PostCreate = () => {
   const dispatch = useDispatch()
 
   const user = useSelector((state) => state.users.user)
-  console.log(user);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    const content = data.content
+  const [dataPost, setDataPost] = useState({
+    content: '',
+    media: 'image.com'
+  })
+  
+  const onSubmit = ({content, media}) => {
+    console.log(media);
+    setDataPost({
+      content,
+      media: media.name
+    })
     const id_user = user._id
-    dispatch(createPostUserAsync({ id_user, content }))
+    console.log(dataPost);
+    dispatch(createPostUserAsync({ id_user, dataPost }))
   }
 
   return (
