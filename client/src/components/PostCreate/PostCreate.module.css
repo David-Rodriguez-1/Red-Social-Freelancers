@@ -23,18 +23,22 @@
   margin-top: 5px;
 }
 
-.description{
+.content{
   background-color: transparent;
   border: 1px solid #A05000;
   border-radius: 30px;
   font-weight: 600;
 }
 
-.description::placeholder{
+.content_Drag{
+  border: 2px dashed #A05000;
+}
+
+.content::placeholder{
   padding-left: 1rem;
 }
 
-.description:hover{
+.content:hover{
   background-color: #002243;
 }
 

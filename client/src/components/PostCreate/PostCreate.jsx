@@ -1,10 +1,20 @@
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import style from './PostCreate.module.css'
 import { GoFileMedia } from 'react-icons/go'
 import { Link } from 'react-router-dom'
 import { createPostUserAsync } from '../../redux/postsSlices'
-import { useState } from 'react'
+import { uploadFile } from '../../../utils/firebase.config'
+import avatar from '../../assets/hombre.png'
+
+const DRAG_IMAGE_STATES = {
+  ERROR: -1,
+  NONE: 0,
+  DRAG_OVER: 1,
+  UPLOADING: 2,
+  COMPLETE: 3
+}
 
 export const PostCreate = () => {
   const {
@@ -20,17 +30,57 @@ export const PostCreate = () => {
 
   const [dataPost, setDataPost] = useState({
     content: '',
-    media: 'image.com'
+    media: {}
   })
-  
-  const onSubmit = ({content, media}) => {
-    console.log(media);
+  const [task, setTask] = useState(null)
+  const [drag, setDrag] = useState(DRAG_IMAGE_STATES.NONE)
+  const [imgUrl, setImgUrl] = useState(null)
+  console.log(imgUrl);
+
+  const handleDragEnter = () => {
+    setDrag(DRAG_IMAGE_STATES.DRAG_OVER)
+  }
+
+  const handleDragLeave = () => {
+    setDrag(DRAG_IMAGE_STATES.NONE)
+  }
+
+  const handleDrop = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+
+    const files = event.dataTransfer.files[0]
+
+    const task = uploadFile(files)
+      .then((downloadURL) => {
+        setImgUrl(downloadURL)
+      })
+      .catch((error) => {
+        console.error('Error uploading file: ', error)
+      })
+    setTask(task)
+  }
+
+  useEffect(() => {
+    if (task) {
+      let onProgress = () => { }
+      let onError = () => { }
+      let onComplete = () => {
+        console.log('On Complete')
+        task.then((res) => console.log(res.task._uploadUrl))
+      }
+      // task.on('state_changed', onProgress, onError, onComplete)
+    }
+  }, [task])
+
+  const onSubmit = ({ content, media }) => {
+    console.log(media)
     setDataPost({
       content,
-      media: media.name
+      media: media
     })
     const id_user = user._id
-    console.log(dataPost);
+    console.log(dataPost)
     dispatch(createPostUserAsync({ id_user, dataPost }))
   }
 
@@ -47,21 +97,40 @@ export const PostCreate = () => {
               <Link to={'ruta del perfil'}>
                 <img
                   className={style.img}
-                  src="https://media.licdn.com/dms/image/D4D35AQFAh797EfmhyQ/profile-framedphoto-shrink_400_400/0/1703182248300?e=1716696000&v=beta&t=f0dmHinlq8YipwqsavgjTJXXcHtTmKlOTnyHfo2XDE0"
+                  src={avatar}
                   alt="Ver el perfil de ..."
                 />
               </Link>
             </div>
             <input
-              className={style.description}
+              onDragEnter={handleDragEnter}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              className={
+                drag === DRAG_IMAGE_STATES.DRAG_OVER
+                  ? style.content_Drag
+                  : style.content
+              }
               type="text"
               placeholder="Crear publicación"
               {...register('content')}
-            />
+              />
+              {imgUrl && (
+                <img
+                  className={style.img_post}
+                  src={imgUrl}
+                  alt="Imagen del post"
+                />
+              )}
           </div>
           <div className={style.input_files_container}>
             {/* <button className={style.button_media}> */}
-            <input id="media" className={style.input_media} type="file" {...register('media')} />
+            <input
+              id="media"
+              className={style.input_media}
+              type="file"
+              {...register('media')}
+            />
             <label className={style.button_media} htmlFor="media">
               <GoFileMedia className="w-9 size-7" />
               Seleccionar archivo

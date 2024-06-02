@@ -1,5 +1,5 @@
 // import { useState } from "react"
-import { Post } from '../Post/Post'
+// import { Post } from '../Post/Post'
 import { PostCreate } from '../PostCreate/PostCreate'
 // import { useSelector } from 'react-redux'
 import style from './Feets.module.css'
@@ -12,7 +12,7 @@ export const Feets = () => {
     <main className={style.main_container}>
       <div className={style.container}>
         <PostCreate />
-        <Post />
+        {/* <Post /> */}
       </div>
     </main>
   )
