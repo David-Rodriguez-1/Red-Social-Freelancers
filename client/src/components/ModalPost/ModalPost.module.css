@@ -1,0 +1,60 @@
+.containerModal{
+  position: relative;
+  background-color: #323232;
+  min-width: 50%;
+  min-height: 60%;
+}
+.input_files_container{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+.input_media{
+  display: none;
+}
+
+.button_media{
+  border: none;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: #C6C7C8;
+  font-size: 14px;
+  padding: 3px 8px;
+  line-height: 14px;
+  font-weight: 600;
+  width: 30%;
+  border-radius: 5px;
+  transition: .5s;
+}
+.button_media:hover{
+  background-color: #323232;
+}
+
+.button_post{
+  background-color: #323232;
+  border-radius: 5px;
+  border: none;
+  color: #C6C7C8;
+  font-weight: 600;
+  transition: .5s;
+}
+
+.content{
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
+  resize: none;
+  height: 500px;
+  width: 70%;
+}
+.content:focus{
+  border: none;
+  margin: 0;
+}
+
+.content_Drag{
+  resize: none;
+  border-radius: 30px;
+  border: 2px dashed #A05000;
+}
