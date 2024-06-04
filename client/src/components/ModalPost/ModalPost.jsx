@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import style from './ModalPost.module.css'
 import { GoFileMedia } from 'react-icons/go'
+import { RxCross2 } from 'react-icons/rx'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPostUserAsync } from '../../redux/postsSlices'
 import { uploadFile } from '../../../utils/firebase.config'
@@ -39,19 +40,23 @@ export const ModalPost = ({ setIsOpen }) => {
     }
   }, [task])
 
-  const handleDragEnter = () => {
+  const handleDragEnter = (e) => {
+    e.preventDefault()
     setDrag(DRAG_IMAGE_STATES.DRAG_OVER)
   }
 
-  const handleDragLeave = () => {
+  const handleDragLeave = (e) => {
+    e.preventDefault()
     setDrag(DRAG_IMAGE_STATES.NONE)
   }
 
-  const handleDrop = (event) => {
-    event.preventDefault()
-    event.stopPropagation()
+  const handleDrop = (e) => {
+    e.preventDefault()
+    setDrag(DRAG_IMAGE_STATES.NONE)
 
-    const files = event.dataTransfer.files[0]
+    // Data transfer
+
+    const files = e.dataTransfer.files[0]
 
     const task = uploadFile(files)
       .then((downloadURL) => {
@@ -76,37 +81,52 @@ export const ModalPost = ({ setIsOpen }) => {
 
   return (
     <div className={style.containerModal}>
-      <form onSubmit={onSubmit} action="submit">
-        <textarea
-          placeholder='Sobre que quieres hablar?'
-          className={
-            drag === DRAG_IMAGE_STATES.DRAG_OVER
-              ? style.content_Drag
-              : style.content
-          }
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-          name="content"
-          id="content"></textarea>
+      <form className={style.formPost} onSubmit={onSubmit} action="submit">
+        <div>
+          <textarea
+            placeholder="Sobre que quieres hablar?"
+            className={
+              drag === DRAG_IMAGE_STATES.DRAG_OVER
+                ? style.content_Drag
+                : style.content
+            }
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            name="content"
+            id="content"></textarea>
 
-        {imgUrl && (
-          <img className={style.img_post} src={imgUrl} alt="Imagen del post" />
-        )}
+          {imgUrl && (
+            <section>
+              <img
+                className={style.img_post}
+                src={imgUrl}
+                alt="Imagen del post"
+              />
+            </section>
+          )}
+        </div>
+
+        <hr style={{ width: '99.7%' }} />
 
         <div className={style.input_files_container}>
           <input id="media" className={style.input_media} type="file" />
           <label className={style.button_media} htmlFor="media">
             <GoFileMedia className="w-9 size-7" />
-            Seleccionar archivo
           </label>
           <button
+            type='submit'
             className={style.button_post}
-            onClick={() => setIsOpen(false)}>
+            onClick={() => setIsOpen(false)}
+            >
             Publicar
           </button>
-          <button onClick={() => setIsOpen(false)}>Cancelar</button>
         </div>
+        <button
+          className={style.btn_close_modal}
+          onClick={() => setIsOpen(false)}>
+          <RxCross2 style={{ marginTop: '3px' }} />
+        </button>
       </form>
     </div>
   )
@@ -114,5 +134,5 @@ export const ModalPost = ({ setIsOpen }) => {
 
 //listado de props
 ModalPost.propTypes = {
-  setIsOpen: Function,
+  setIsOpen: Function
 }

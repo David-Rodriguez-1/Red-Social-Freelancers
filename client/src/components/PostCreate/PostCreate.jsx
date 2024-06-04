@@ -10,7 +10,6 @@ export const PostCreate = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const user = useSelector((state) => state.users.user)
-  console.log(user);
 
   return (
     <div className={style.main_container}>
