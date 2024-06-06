@@ -19,7 +19,6 @@ export const loginUserAsync = createAsyncThunk('login/user', async (data) => {
     const authUser = await axios
       .post(`${URL_BASE}login`, data)
       .then((res) => res.data)
-    localStorage.setItem('auth', JSON.stringify({ user: authUser }))
     return authUser
   } catch (error) {
     return error.response.data
@@ -37,9 +36,16 @@ export const fetchUsers = createAsyncThunk('user/fetch', async () => {
   return users.data
 })
 
+const {user} = JSON.parse(localStorage.getItem('auth')) || {}
+
 const usersSlice = createSlice({
   name: 'users',
-  initialState: { data: [], user: null, state: null, error: null},
+  initialState: {
+    data: [],
+    user: user,
+    state: null,
+    error: null
+  },
   reducers: {
     createUser(state, action) {
       state.data.push(action.payload)
@@ -65,12 +71,15 @@ const usersSlice = createSlice({
       state.error = null
     })
     builder.addCase(loginUserAsync.fulfilled, (state, action) => {
-      state.user = action.payload
+      localStorage.setItem('auth', JSON.stringify({ user: action.payload }))
+      const { user } = JSON.parse(localStorage.getItem('auth'))
+      state.user = user
     })
     builder.addCase(logoutUserAsync.fulfilled, (state) => {
       state.user = null
     })
   }
 })
+
 
 export default usersSlice.reducer

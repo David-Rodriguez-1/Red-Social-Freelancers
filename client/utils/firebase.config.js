@@ -20,7 +20,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 const storage = getStorage(app)
-const analytics = getAnalytics(app)
+getAnalytics(app)
 
 export function uploadFile(file) {
   return new Promise((resolve, reject) => {
@@ -31,7 +31,7 @@ export function uploadFile(file) {
       'state_changed',
       (snapshot) => {
         let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        console.log('Upload is ' + progress + '% done')
+        return(progress)
       },
       (error) => {
         console.log(error)
@@ -39,33 +39,9 @@ export function uploadFile(file) {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log('File available at', downloadURL)
-          resolve(downloadURL)
+          resolve({ downloadURL })
         })
       }
     )
   })
 }
-// export function uploadFile(file) {
-//   const storageRef = ref(storage, `media-posts/${v4()}`)
-//   const uploadTask = uploadBytesResumable(storageRef, file)
-
-//   uploadTask.on(
-//     'state_changed',
-//     (snapshot) => {
-//       let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-//       console.log('Upload is ' + progress + '% done')
-//       return progress
-//     },
-//     (error) => {
-//       console.log(error)
-//     },
-//     () => {
-//       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-//         console.log('File available at', downloadURL)
-//         return downloadURL
-//       })
-//     }
-//   )
-//   return uploadTask
-// }

@@ -1,22 +1,8 @@
 .post_container {
-  width: 90%;
-  height: 300px;
+  width: 100%;
   color: #ffffffe6;
   line-height: 24px;
   border-radius: 10px;
   margin: 0 auto;
-  background-color: rgb(83, 83, 83);
-}
-.head_post {
-  align-items: center;
-  color: #ffffffe6;
-  display: flex;
-  line-height: 24px;
-  margin: 0px 0px 8px;
-  padding: 12px 72px 0px 16px;
-}
-.content_text {
-  color: #ffffffe6;
-  line-height: 24px;
-  margin: 0px 8px 0px 0px;
+  background-color: transparent;
 }

@@ -43,7 +43,7 @@ li{
   cursor: pointer;
 }
 
-p{
+.p{
   font-size: .8rem;
   margin: 0;
 }
@@ -57,7 +57,7 @@ a{
 a:visited{
   color: none;
 }
-p:hover, a:hover, li:hover{
+.p:hover, a:hover, li:hover{
   color: #456074;
 }
 

@@ -31,25 +31,25 @@ export const Narbar = () => {
         <li>
           <a href="/home">
             <IoHome />
-            <p>Home</p>
+            <p className={style.p}>Home</p>
           </a>
         </li>
         <li>
           <a href="/network">
             <FaPeopleGroup />
-            <p>My network</p>
+            <p className={style.p}>My network</p>
           </a>
         </li>
         <li>
           <a href="/jobs">
             <BiBriefcase />
-            <p>Jobs</p>
+            <p className={style.p}>Jobs</p>
           </a>
         </li>
         <li>
           <a href="/notifications">
             <FaBell />
-            <p>Notification</p>
+            <p className={style.p}>Notification</p>
           </a>
         </li>
       </ul>

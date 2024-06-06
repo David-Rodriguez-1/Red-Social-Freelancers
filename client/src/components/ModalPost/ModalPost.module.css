@@ -43,18 +43,6 @@
   cursor: pointer;
 }
 
-.content{
-  background-color: transparent;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  resize: none;
-  color: #C6C7C8;
-  width: 95%;
-  height: 400px;
-  font-size: 20px;
-  margin: 1rem 0rem 0rem 1rem;
-}
-
 .content::placeholder{
   color: #C6C7C8;
 }
@@ -74,12 +62,24 @@
   background: #C6C7C8;
 }
 
+.content{
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  resize: none;
+  color: #C6C7C8;
+  width: 95%;
+  height: 400px;
+  font-size: 20px;
+  margin: 1rem 0rem 0rem 1rem;
+}
 
 .content_Drag{
   background-color: transparent;
   border-radius: 10px;
   resize: none;
   height: 400px;
+  width: 95%;
   font-size: 20px;
   margin: 1rem 1rem 0rem 1rem;
   border: 2px dashed #969696;

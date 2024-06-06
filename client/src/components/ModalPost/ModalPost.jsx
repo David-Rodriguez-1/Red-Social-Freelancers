@@ -1,18 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import style from './ModalPost.module.css'
 import { GoFileMedia } from 'react-icons/go'
 import { RxCross2 } from 'react-icons/rx'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPostUserAsync } from '../../redux/postsSlices'
+import { useDragDrop } from '../../hooks/useDragDrop'
 import { uploadFile } from '../../../utils/firebase.config'
-
-const DRAG_IMAGE_STATES = {
-  ERROR: -1,
-  NONE: 0,
-  DRAG_OVER: 1,
-  UPLOADING: 2,
-  COMPLETE: 3
-}
 
 export const ModalPost = ({ setIsOpen }) => {
   const [dataPost, setDataPost] = useState({
@@ -21,62 +14,47 @@ export const ModalPost = ({ setIsOpen }) => {
   })
 
   const user = useSelector((state) => state.users.user)
+  // const user = useSelector((state) => state.user)
+
+  const {
+    drag,
+    handleDragEnter,
+    handleDragLeave,
+    handleDrop,
+    imgUrl,
+    setImgUrl
+  } = useDragDrop()
 
   const dispatch = useDispatch()
 
-  const [task, setTask] = useState(null)
-  const [drag, setDrag] = useState(DRAG_IMAGE_STATES.NONE)
-  const [imgUrl, setImgUrl] = useState(null)
-
-  useEffect(() => {
-    if (task) {
-      let onProgress = () => {}
-      let onError = () => {}
-      let onComplete = () => {
-        console.log('On Complete')
-        task.then((res) => console.log(res.task._uploadUrl))
-      }
-      // task.on('state_changed', onProgress, onError, onComplete)
-    }
-  }, [task])
-
-  const handleDragEnter = (e) => {
-    e.preventDefault()
-    setDrag(DRAG_IMAGE_STATES.DRAG_OVER)
-  }
-
-  const handleDragLeave = (e) => {
-    e.preventDefault()
-    setDrag(DRAG_IMAGE_STATES.NONE)
-  }
-
-  const handleDrop = (e) => {
-    e.preventDefault()
-    setDrag(DRAG_IMAGE_STATES.NONE)
-
-    // Data transfer
-
-    const files = e.dataTransfer.files[0]
-
-    const task = uploadFile(files)
-      .then((downloadURL) => {
-        setImgUrl(downloadURL)
+  const handleMedia = (e) => {
+    const file = e.target.files[0]
+    uploadFile(file).then(({ downloadURL }) => {
+      setImgUrl(downloadURL)
+      setDataPost({
+        ...dataPost,
+        media: downloadURL
       })
-      .catch((error) => {
-        console.error('Error uploading file: ', error)
-      })
-    setTask(task)
-  }
-
-  const onSubmit = ({ content, media }) => {
-    console.log(media)
-    setDataPost({
-      content,
-      media: media
     })
+  }
+
+  const handleContent = (e) => {
+    setDataPost({
+      ...dataPost,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    const postData = {
+      content: dataPost.content,
+      media: imgUrl
+    }
     const id_user = user._id
-    console.log(dataPost)
-    dispatch(createPostUserAsync({ id_user, dataPost }))
+    const data = { id_user, ...postData }
+    dispatch(createPostUserAsync(data))
+    setIsOpen(false)
   }
 
   return (
@@ -85,14 +63,11 @@ export const ModalPost = ({ setIsOpen }) => {
         <div>
           <textarea
             placeholder="Sobre que quieres hablar?"
-            className={
-              drag === DRAG_IMAGE_STATES.DRAG_OVER
-                ? style.content_Drag
-                : style.content
-            }
+            className={drag === 1 ? style.content_Drag : style.content}
             onDragEnter={handleDragEnter}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
+            onChange={handleContent}
             name="content"
             id="content"></textarea>
 
@@ -110,21 +85,22 @@ export const ModalPost = ({ setIsOpen }) => {
         <hr style={{ width: '99.7%' }} />
 
         <div className={style.input_files_container}>
-          <input id="media" className={style.input_media} type="file" />
+          <input
+            id="media"
+            className={style.input_media}
+            onChange={handleMedia}
+            type="file"
+          />
           <label className={style.button_media} htmlFor="media">
             <GoFileMedia className="w-9 size-7" />
           </label>
           <button
-            type='submit'
-            className={style.button_post}
-            onClick={() => setIsOpen(false)}
-            >
+            type="submit"
+            className={style.button_post}>
             Publicar
           </button>
         </div>
-        <button
-          className={style.btn_close_modal}
-          onClick={() => setIsOpen(false)}>
+        <button type="submit" className={style.btn_close_modal}>
           <RxCross2 style={{ marginTop: '3px' }} />
         </button>
       </form>

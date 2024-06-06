@@ -6,7 +6,6 @@ export const URL_BASE = 'http://localhost:3001/'
 // Obtener todos los posts
 export const fetchPosts = createAsyncThunk('/posts/fecth', async () => {
   const posts = await axios.get(`${URL_BASE}post`)
-  localStorage('posts', posts.data)
   return posts.data
 })
 
@@ -23,7 +22,7 @@ export const createPostUserAsync = createAsyncThunk('post/create', async (data) 
 
 const postsSlices = createSlice({
   name: 'posts',
-  initialState: { data: [] },
+  initialState: { data: [], posts: undefined },
   reducers: {
     createPosts(state, action) {
       state.data.push(action.payload)
