@@ -1,4 +1,3 @@
-// import { useState } from "react"
 import { Post } from '../Post/Post'
 import { PostCreate } from '../PostCreate/PostCreate'
 import style from './Feets.module.css'

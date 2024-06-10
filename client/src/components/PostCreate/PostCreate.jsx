@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux'
 import style from './PostCreate.module.css'
 import { Link } from 'react-router-dom'
 import avatar from '../../assets/hombre.png'
@@ -8,8 +7,6 @@ import { ModalPost } from '../index'
 export const PostCreate = () => {
 
   const [isOpen, setIsOpen] = useState(false)
-
-  const user = useSelector((state) => state.users.user)
 
   return (
     <div className={style.main_container}>

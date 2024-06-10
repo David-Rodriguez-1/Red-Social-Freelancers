@@ -1,8 +1,24 @@
 .post_container {
-  width: 100%;
+  border-radius: 40px;
   color: #ffffffe6;
   line-height: 24px;
-  border-radius: 10px;
-  margin: 0 auto;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.615);
+}
+
+.btn_actions {
+  display: flex;
+  justify-content: space-evenly;
+  height: 3rem;
+
+  > button {
+    border: none;
+    background-color: transparent;
+    font-family: 'Work Sans', sans-serif;
+    color: #ffffffe6;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover{
+      background-color: darkslategray;
+    }
+  }
 }

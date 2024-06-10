@@ -29,7 +29,7 @@ const UserScheme = new mongoose.Schema(
       type: String,
       enum: ['freelancer', 'recruiter']
     },
-    profile_image: {
+    avatar: {
       type: String
     },
     bio: {
