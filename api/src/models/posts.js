@@ -3,14 +3,15 @@ const mongoose = require('mongoose')
 const PostsScheme = new mongoose.Schema({
   id_user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    require: true
   },
-  image: {
-    type: String,
-    required: true
-  },
-  description: {
+  media: {
     type: String
+  },
+  content: {
+    type: String,
+    require: true
   },
   comments: {
     type: Array,

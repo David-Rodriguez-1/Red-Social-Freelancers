@@ -1,3 +1,76 @@
 .container_post_form {
-  width: 70%;
+  height: 115px;
+  background-color: rgba(0, 0, 0, 0.615);
+  border-radius: 15px;
+}
+
+.input_img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.img_perfil{
+  width: 10%;
+}
+
+.img{
+  width: 80%;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+.content{
+  background-color: transparent;
+  border: 1px solid #A05000;
+  border-radius: 30px;
+  font-weight: 600;
+}
+
+.content_Drag{
+  border: 2px dashed #A05000;
+}
+
+.content::placeholder{
+  padding-left: 1rem;
+}
+
+.content:hover{
+  background-color: #002243;
+}
+
+.button_media{
+  border: none;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: #C6C7C8;
+  font-size: 14px;
+  padding: 3px 8px;
+  line-height: 14px;
+  font-weight: 600;
+  width: 30%;
+  border-radius: 5px;
+  transition: .5s;
+}
+.button_media:hover{
+  background-color: #323232;
+}
+
+.button_post{
+  background-color: #323232;
+  border-radius: 5px;
+  border: none;
+  color: #C6C7C8;
+  font-weight: 600;
+  transition: .5s;
+}
+
+.button_post:hover{
+  background-color: #4d4d4d;
+}
+
+.input_media{
+  display: none;
 }

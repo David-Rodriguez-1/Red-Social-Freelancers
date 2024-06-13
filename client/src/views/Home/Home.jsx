@@ -1,7 +1,8 @@
 import { Feets, Narbar } from '../../components/index'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { fetchUsers, fetchPosts } from '../../redux/userSlices'
+import { fetchUsers } from '../../redux/userSlices'
+import { fetchPosts } from '../../redux/postsSlices'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -13,7 +14,7 @@ export const Home = () => {
 
   return (
     <div>
-      <Narbar/>
+      <Narbar />
       <Feets />
     </div>
   )

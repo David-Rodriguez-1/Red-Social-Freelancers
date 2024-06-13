@@ -1,8 +1,8 @@
-const { Posts, User } = require('../../models/index')
+const { Posts, User } = require('../../models/index');
 
 const getPosts = async () => {
   try {
-    const posts = await Posts.find()
+    const posts = await Posts.find().populate('id_user')
     return posts
   } catch (error) {
     console.log({'Error al obtener los posts': error})

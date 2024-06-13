@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
 const mongoose = require('mongoose')
+const cookieParser = require('cookie-parser')
 
 require('./src/config/db')
 
@@ -20,6 +21,15 @@ app.use(
     extended: true
   })
 )
+
+app.use(cookieParser())
+app.get('/home', (req, res) => {
+  res.cookie('David', 'Rodriguez', {
+    httpOnly: true,
+    secure: false,
+    sameSite: 'lax'
+  })
+})
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*') // update to match the domain you will make the request from
