@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose"
 
   const ConnectionsSchema = new mongoose.Schema({
     user_id: {
@@ -14,4 +14,4 @@ const mongoose = require('mongoose')
     },
   })
 
-module.exports = ConnectionsSchema
+  export const connection1 = mongoose.model('Connection', ConnectionSchema)

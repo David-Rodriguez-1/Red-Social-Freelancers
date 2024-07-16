@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose"
 
 const CompanyScheme = new mongoose.Schema(
   {
@@ -25,5 +25,4 @@ const CompanyScheme = new mongoose.Schema(
   },
   { strictPopulate: false }
 )
-
-module.exports = CompanyScheme
+export const Company = mongoose.model('Company', companySchema)

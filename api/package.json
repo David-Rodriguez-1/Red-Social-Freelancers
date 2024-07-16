@@ -1,11 +1,12 @@
 {
   "name": "freelancers_app",
   "version": "1.0.0",
+  "type": "module",
   "description": "App de red social para freelancers tech",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "mocha",
-    "start": "nodemon -L"
+    "start": "nodemon ./src/app.js"
   },
   "author": "David Rodriguez",
   "license": "ISC",

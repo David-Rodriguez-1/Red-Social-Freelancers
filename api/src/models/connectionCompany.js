@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose"
 
 const ConnectionsCompanySchema = new mongoose.Schema({
   user_id: {
@@ -13,5 +13,4 @@ const ConnectionsCompanySchema = new mongoose.Schema({
     unique: true
   }
 })
-
-module.exports = ConnectionsCompanySchema
+export const conexCompany = mongoose.model('ConnCompany', ConnectionsCompanySchema)

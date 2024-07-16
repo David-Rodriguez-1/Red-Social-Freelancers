@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose"
 // const mongoosePaginate = require('mongoose-paginate-v2')
 
 const UserScheme = new mongoose.Schema(
@@ -48,4 +48,5 @@ const UserScheme = new mongoose.Schema(
   { strictPopulate: false }
 )
 
-module.exports = UserScheme
+export const user = mongoose.model('User', UserScheme)
+

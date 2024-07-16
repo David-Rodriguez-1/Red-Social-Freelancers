@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose"
 
 const PostsCompanyScheme = new mongoose.Schema({
   id_user: {
@@ -26,4 +26,5 @@ const PostsCompanyScheme = new mongoose.Schema({
   }
 })
 
-module.exports = PostsCompanyScheme
+export const PostsCompany = mongoose.model('PostsCompany', PostsCompanyScheme)
+

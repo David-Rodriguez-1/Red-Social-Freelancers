@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from "mongoose"
 // const mongoosePaginate = require('mongoose-paginate')
 
 const JobSchema = new mongoose.Schema({
@@ -26,4 +26,4 @@ const JobSchema = new mongoose.Schema({
 
 // modelJobs.paginate().then({}) // Usage
 
-module.exports = JobSchema
+const Job = mongoose.model('Job', jobSchema)
