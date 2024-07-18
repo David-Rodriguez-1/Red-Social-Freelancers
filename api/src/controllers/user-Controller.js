@@ -1,6 +1,6 @@
 
 import bcrypt from 'bcrypt'
-import { user, user } from '../models/user.js'
+import { user } from '../models/user.js'
 import { ManagerUser } from '../dao/managerUser.js'
 
 export class UserController {

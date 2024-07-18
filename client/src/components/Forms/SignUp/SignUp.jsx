@@ -19,6 +19,7 @@ export const SignUp = ({ setOption }) => {
   const navigate = useNavigate()
 
   const onSubmit = (data) => {
+    console.log(data);
     const response = dispatch(createUserAsync(data))
       .then(res => {
       if (res.error) toast.error(res.error.message)

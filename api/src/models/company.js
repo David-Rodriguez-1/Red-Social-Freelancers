@@ -25,4 +25,4 @@ const CompanyScheme = new mongoose.Schema(
   },
   { strictPopulate: false }
 )
-export const Company = mongoose.model('Company', companySchema)
+export const Company = mongoose.model('Company', CompanyScheme)

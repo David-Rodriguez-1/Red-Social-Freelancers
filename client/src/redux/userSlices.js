@@ -5,11 +5,13 @@ export const URL_BASE = 'http://localhost:3001/'
 
 //Creacion de usuario
 export const createUserAsync = createAsyncThunk('user/create', async (data) => {
+  console.log(data)
   try {
     const newUser = await axios.post(`${URL_BASE}`, data)
+    console.log(newUser);
     return newUser.data
   } catch (error) {
-    throw error.response.data.message
+    throw error.response.data.message 
   }
 })
 

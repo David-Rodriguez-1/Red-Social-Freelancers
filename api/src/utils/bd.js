@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
- export const bdMongo = async (link , bd) => {
+export const bdMongo = async (link , bd) => {
 
   try {
 

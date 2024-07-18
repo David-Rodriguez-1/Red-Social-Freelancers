@@ -14,4 +14,4 @@ import mongoose from "mongoose"
     },
   })
 
-  export const connection1 = mongoose.model('Connection', ConnectionSchema)
+  export const connection1 = mongoose.model('Connection', ConnectionsSchema)
