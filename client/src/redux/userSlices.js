@@ -1,14 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const URL_BASE = 'http://localhost:3001/'
+export const URL_BASE = 'http://localhost:3001/user'
 
 //Creacion de usuario
 export const createUserAsync = createAsyncThunk('user/create', async (data) => {
-  console.log(data)
   try {
     const newUser = await axios.post(`${URL_BASE}`, data)
-    console.log(newUser);
     return newUser.data
   } catch (error) {
     throw error.response.data.message 
@@ -16,10 +14,10 @@ export const createUserAsync = createAsyncThunk('user/create', async (data) => {
 })
 
 // Login
-export const loginUserAsync = createAsyncThunk('login/user', async (data) => {
+export const loginUserAsync = createAsyncThunk('user/login', async (data) => {
   try {
     const authUser = await axios
-      .post(`${URL_BASE}login`, data)
+      .post(`${URL_BASE}/login`, data)
       .then((res) => res.data)
     return authUser
   } catch (error) {

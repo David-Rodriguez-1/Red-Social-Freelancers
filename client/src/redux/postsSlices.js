@@ -32,7 +32,7 @@ const postsSlices = createSlice({
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       state.posts = action.payload
     })
-  }
+  },
 })
 
 export default postsSlices.reducer
